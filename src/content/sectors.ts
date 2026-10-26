@@ -10,7 +10,8 @@ export interface SectorContent {
   text: string;
   focus: string[];
   services: ServiceContent["slug"][];
-  photo: { caption: string; label: string };
+  /** Foto del sector (generada con IA), en `public/assets/sectores/<id>.webp`. */
+  photo: { src: string; alt: string };
 }
 
 /** Sectores atendidos (fuente: mapa del sitio e Inicio). */
@@ -32,8 +33,8 @@ export const sectorsContent: SectorContent[] = [
       "gestion-de-riesgos",
     ],
     photo: {
-      caption: "[Foto] Oficial de SEDIN en una instalación petrolera",
-      label: "Espacio para fotografía de instalación petrolera",
+      src: "/assets/sectores/industria-petrolera.webp",
+      alt: "Oficial de seguridad vigila el cerco perimetral de un campo petrolero a orillas del Lago de Maracaibo, con balancines y torres de perforación al atardecer.",
     },
   },
   {
@@ -44,8 +45,8 @@ export const sectorsContent: SectorContent[] = [
     focus: ["Oficinas", "Plantas y almacenes", "Centros de distribución"],
     services: ["vigilancia-privada", "control-de-acceso", "sistemas-electronicos"],
     photo: {
-      caption: "[Foto] Control de acceso en planta o almacén",
-      label: "Espacio para fotografía de planta o almacén",
+      src: "/assets/sectores/empresas-e-industria.webp",
+      alt: "Oficial de seguridad, con su planilla, atiende al conductor de un camión en la barrera de acceso de un centro de distribución.",
     },
   },
   {
@@ -56,8 +57,8 @@ export const sectorsContent: SectorContent[] = [
     focus: ["Soluciones a la medida", "Discreción", "Control y protección"],
     services: ["vigilancia-privada", "control-de-acceso", "gestion-de-riesgos"],
     photo: {
-      caption: "[Foto] Recepción de sede corporativa con oficial de seguridad",
-      label: "Espacio para fotografía de sede corporativa",
+      src: "/assets/sectores/corporaciones.webp",
+      alt: "Oficial de seguridad entrega una credencial de visitante a un ejecutivo en la recepción de una sede corporativa con vista al Lago de Maracaibo.",
     },
   },
   {
@@ -68,8 +69,8 @@ export const sectorsContent: SectorContent[] = [
     focus: ["Presencia disuasiva", "Vigilancia 24/7", "Control de accesos"],
     services: ["vigilancia-privada", "control-de-acceso", "sistemas-electronicos"],
     photo: {
-      caption: "[Foto] Garita de conjunto residencial",
-      label: "Espacio para fotografía de conjunto residencial",
+      src: "/assets/sectores/residencial-y-condominios.webp",
+      alt: "Oficial de seguridad atiende con su radio a un conductor en la garita de acceso de un conjunto residencial al anochecer.",
     },
   },
 ];

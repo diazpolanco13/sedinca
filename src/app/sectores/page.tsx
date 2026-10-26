@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { SitePage } from "@/components/layout/SitePage";
 import { SectionHeader } from "@/components/ui/blocks";
 import { Chip } from "@/components/ui/Chip";
 import { CtaBand } from "@/components/ui/CtaBand";
 import { PageHero } from "@/components/ui/PageHero";
-import { Placeholder } from "@/components/ui/Placeholder";
 import { cn } from "@/lib/cn";
 import { sectorsContent } from "@/content/sectors";
 import { getService } from "@/content/services";
@@ -45,12 +45,15 @@ export default function SectorsPage() {
                 i % 2 === 1 && "lg:flex-row-reverse",
               )}
             >
-              <Placeholder
-                tone="photo"
-                label={sector.photo.label}
-                text={sector.photo.caption}
-                className="h-[240px] min-w-0 flex-[1_1_420px] sm:h-[320px]"
-              />
+              <div className="relative h-[240px] min-w-0 flex-[1_1_420px] overflow-hidden rounded-xl sm:h-[320px]">
+                <Image
+                  src={sector.photo.src}
+                  alt={sector.photo.alt}
+                  fill
+                  sizes="(min-width: 1024px) 616px, 100vw"
+                  className="object-cover"
+                />
+              </div>
               <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-4">
                 <div className="flex h-12 w-12 items-center justify-center rounded-md bg-surface-brand text-ink-brand">
                   <sector.Icon size={26} />
