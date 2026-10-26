@@ -20,7 +20,7 @@ export default function ContactPage() {
     { Icon: PhoneIcon, label: "Teléfono", value: site.phone, href: phoneHref() },
     { Icon: ChatIcon, label: "WhatsApp", value: site.whatsappNumber, href: wa },
     { Icon: MailIcon, label: "Correo", value: site.email, href: emailHref() },
-    { Icon: ClockIcon, label: "Horario de oficina", value: site.hours },
+    { Icon: ClockIcon, label: "Horario de atención", value: site.hours },
   ];
 
   return (

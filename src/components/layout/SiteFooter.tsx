@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { phoneHref, routes, services, site } from "@/config/site";
+import { emailHref, phoneHref, routes, services, site } from "@/config/site";
 
 const linkClass = "text-titanium-300 no-underline transition-colors hover:text-white";
 const headingClass =
@@ -46,7 +46,10 @@ export function SiteFooter() {
             ) : (
               <span>{site.phone}</span>
             )}
-            <span>{site.email}</span>
+            <a href={emailHref()} className={linkClass}>
+              {site.email}
+            </a>
+            <span>Atención {site.hours}</span>
             <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
               {site.address}, {site.city}
             </a>

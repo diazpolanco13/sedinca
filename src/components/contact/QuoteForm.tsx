@@ -75,8 +75,7 @@ export function QuoteForm() {
     if (!site.contactEndpoint) {
       setStatus({
         kind: "error",
-        message:
-          "El envío en línea aún no está habilitado. Mientras tanto, la solicitud puede hacerse por teléfono o WhatsApp.",
+        message: `El envío en línea aún no está habilitado. Mientras tanto, la solicitud puede hacerse por teléfono, WhatsApp o al correo ${site.email}.`,
       });
       return;
     }
@@ -209,7 +208,7 @@ export function QuoteForm() {
         <Button type="submit" disabled={status.kind === "sending"}>
           {status.kind === "sending" ? "Enviando…" : "Enviar solicitud"}
         </Button>
-        <span className="text-sm leading-5 text-ink-muted">Respuesta en {site.responseTime}.</span>
+        <span className="text-sm leading-5 text-ink-muted">{site.responseTime}.</span>
       </div>
 
       <div role="status" aria-live="polite" className="empty:hidden">

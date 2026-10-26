@@ -90,8 +90,7 @@ export function JobForm() {
     if (!site.jobsEndpoint) {
       setStatus({
         kind: "error",
-        message:
-          "La postulación en línea aún no está habilitada. Mientras tanto, puede comunicarse por teléfono o WhatsApp.",
+        message: `La postulación en línea aún no está habilitada. Mientras tanto, puede enviar el currículum al correo ${site.email}.`,
       });
       return;
     }
