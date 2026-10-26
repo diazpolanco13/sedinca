@@ -22,7 +22,7 @@ const inter = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.shortName} — Soluciones de seguridad integral`,
+    default: `${site.shortName} — Seguridad y Defensa Integral`,
     template: `%s — ${site.shortName}`,
   },
   description:

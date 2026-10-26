@@ -31,7 +31,7 @@ export function Hero() {
           id="portada-titulo"
           className="m-0 max-w-[680px] font-display text-[clamp(44px,6vw,92px)] leading-[1.02] font-bold tracking-[-0.02em] text-white [text-shadow:0_2px_24px_rgba(4,13,31,0.35)]"
         >
-          Soluciones de seguridad <span className="text-azure-500">integral</span>
+          Seguridad y Defensa <span className="text-azure-500">Integral</span>
         </h1>
         <p className="m-0 max-w-[620px] font-sans text-lg leading-7 font-light text-white/92 sm:text-xl sm:leading-8">
           Vigilancia privada, control de acceso y sistemas electrónicos para industrias, empresas,

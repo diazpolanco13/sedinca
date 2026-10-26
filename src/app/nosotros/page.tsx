@@ -56,8 +56,8 @@ export default function AboutPage() {
       <PageHero
         crumbs={[{ label: "Nosotros" }]}
         eyebrow="Nosotros"
-        title={{ text: "Seguridad y Defensa", highlight: "Integral" }}
-        lead="Atentos siempre, protegiendo lo que más importa. Seguridad privada y protección preventiva para personas y bienes."
+        title={{ text: "Atentos siempre, protegiendo lo que más", highlight: "importa" }}
+        lead="Seguridad y Defensa Integral, Compañía Anónima: seguridad privada y protección preventiva para personas y bienes."
         secondary={{ label: "Trabaja con nosotros", href: routes.jobs }}
       />
 
