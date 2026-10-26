@@ -7,8 +7,7 @@ import { Sectors } from "@/components/home/Sectors";
 import { Services } from "@/components/home/Services";
 import { Staff } from "@/components/home/Staff";
 import { Values } from "@/components/home/Values";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SitePage } from "@/components/layout/SitePage";
 
 export const metadata: Metadata = {
   title: { absolute: "Inicio — SEDIN" },
@@ -16,19 +15,15 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className="relative">
-      <SiteHeader />
-      <main>
-        <Hero />
-        <Pillars />
-        <Services />
-        <Sectors />
-        <ControlCenter />
-        <Staff />
-        <Values />
-        <CallToAction />
-      </main>
-      <SiteFooter />
-    </div>
+    <SitePage>
+      <Hero />
+      <Pillars />
+      <Services />
+      <Sectors />
+      <ControlCenter />
+      <Staff />
+      <Values />
+      <CallToAction />
+    </SitePage>
   );
 }

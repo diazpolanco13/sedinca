@@ -13,8 +13,11 @@ export const site = {
   hours: "[HORARIO]",
   whatsappNumber: "[NÚMERO DE WHATSAPP]",
   responseTime: "[TIEMPO DE RESPUESTA]",
+  jobRequirements: "[REQUISITOS DE POSTULACIÓN]",
   /** Endpoint que recibe el formulario de cotización (POST JSON). Vacío = sin envío. */
   contactEndpoint: process.env.NEXT_PUBLIC_CONTACT_ENDPOINT ?? "",
+  /** Endpoint que recibe las postulaciones (POST multipart con el CV). Vacío = sin envío. */
+  jobsEndpoint: process.env.NEXT_PUBLIC_JOBS_ENDPOINT ?? "",
 } as const;
 
 export function isPlaceholder(value: string) {
@@ -42,15 +45,6 @@ export const mainNav = [
   { label: "Servicios", href: "/servicios" },
   { label: "Sectores", href: "/sectores" },
   { label: "Nosotros", href: "/nosotros" },
-  { label: "Contacto", href: "/contacto" },
-] as const;
-
-/** Menú del encabezado claro de las páginas interiores. */
-export const sectionNav = [
-  { label: "Servicios", href: "/servicios" },
-  { label: "Sectores", href: "/sectores" },
-  { label: "Nosotros", href: "/nosotros" },
-  { label: "Trabaja con nosotros", href: "/empleo" },
   { label: "Contacto", href: "/contacto" },
 ] as const;
 

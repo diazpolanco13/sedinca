@@ -4,6 +4,9 @@ import {
   ClipboardCheckIcon,
   ClockIcon,
   EyeIcon,
+  GuardIcon,
+  IdCardIcon,
+  MonitorIcon,
   HeadsetIcon,
   SearchIcon,
   ShieldCheckIcon,
@@ -21,7 +24,6 @@ export interface ServiceContent {
   /** Titular de la portada; `highlight` va en color de marca al final. */
   title: { text: string; highlight: string };
   lead: string;
-  photo: { caption: string; label: string };
   /** Bloque de dos tarjetas (modalidades o líneas del servicio). */
   modes: {
     eyebrow: string;
@@ -49,11 +51,6 @@ export const servicesContent: ServiceContent[] = [
       "Vigilancia privada fija y móvil para conjuntos residenciales, condominios, empresas e industria: presencia disuasiva, vigilancia 24/7 y atención inmediata.",
     title: { text: "Servicio de vigilancia", highlight: "privada" },
     lead: "Protegemos lo que más te importa. Oficiales de seguridad para conjuntos residenciales, condominios, empresas e industria, con presencia disuasiva y respuesta inmediata.",
-    photo: {
-      caption: "[Foto] Oficial en garita de conjunto residencial, de noche",
-      label:
-        "Espacio para fotografía: oficial de seguridad en la garita de un conjunto residencial de noche",
-    },
     modes: {
       eyebrow: "Modalidades",
       heading: "Fija o móvil, según lo que necesitas proteger",
@@ -126,11 +123,6 @@ export const servicesContent: ServiceContent[] = [
       "Control de acceso y salida de personal: procedimientos de acceso, inspección y control, protocolos de seguridad y trato respetuoso y profesional.",
     title: { text: "Control de acceso y salida de", highlight: "personal" },
     lead: "Cada ingreso controlado es un riesgo menos para tu empresa. Oficiales capacitados para garantizar el control y la seguridad en cada ingreso y salida de tus instalaciones.",
-    photo: {
-      caption: "[Foto] Oficial verificando la identificación en el acceso de una planta",
-      label:
-        "Espacio para fotografía: oficial de seguridad verificando la identificación del personal en el acceso de una planta",
-    },
     modes: {
       eyebrow: "Modalidades",
       heading: "Control en la entrada y en la salida",
@@ -203,10 +195,6 @@ export const servicesContent: ServiceContent[] = [
       "Sistemas de seguridad electrónica: cámaras de alta definición con visión nocturna, vigilancia remota 24/7 desde centro de control, cercado eléctrico y concertinas.",
     title: { text: "Sistemas de seguridad", highlight: "electrónica" },
     lead: "Tecnología, experiencia y protección para lo que más valoras. Cámaras de alta definición, vigilancia remota 24/7 desde nuestro centro de control, cercado eléctrico y concertinas.",
-    photo: {
-      caption: "[Foto] Centro de control con monitores de videovigilancia",
-      label: "Espacio para fotografía: centro de control de SEDIN con monitores de videovigilancia",
-    },
     modes: {
       eyebrow: "Soluciones",
       heading: "Monitoreo en tiempo real y protección perimetral",
@@ -279,11 +267,6 @@ export const servicesContent: ServiceContent[] = [
       "Gestión de riesgos y consultoría en seguridad: prevención, análisis y respuesta efectiva, con asesoría para diseñar el esquema de seguridad de cada operación.",
     title: { text: "Gestión de riesgos y", highlight: "consultoría" },
     lead: "Prevención, análisis y respuesta efectiva. Asesoría para diseñar el esquema de seguridad que tu operación necesita.",
-    photo: {
-      caption: "[Foto] Supervisor revisando un plan de seguridad con el cliente",
-      label:
-        "Espacio para fotografía: supervisor de SEDIN revisando un plan de seguridad con el cliente",
-    },
     modes: {
       eyebrow: "Servicios",
       heading: "Análisis y asesoría para decidir con criterio",
@@ -352,3 +335,38 @@ export const servicesContent: ServiceContent[] = [
 export function getService(slug: string) {
   return servicesContent.find((s) => s.slug === slug);
 }
+
+/** Resumen de cada servicio para el catálogo de /servicios (fuente: mapa del sitio e Inicio). */
+export const serviceCatalog: Record<
+  ServiceContent["slug"],
+  { title: string; Icon: Icon; summary: string; includes: string[] }
+> = {
+  "vigilancia-privada": {
+    title: "Vigilancia privada",
+    Icon: GuardIcon,
+    summary:
+      "Oficiales de seguridad en modalidad fija y móvil, con presencia disuasiva y atención inmediata ante cualquier novedad.",
+    includes: ["Vigilancia fija", "Vigilancia móvil", "Residencial, empresas e industria"],
+  },
+  "control-de-acceso": {
+    title: "Control de acceso y salida de personal",
+    Icon: IdCardIcon,
+    summary:
+      "Inspección y registro de personal en cada ingreso y salida. Cada ingreso controlado es un riesgo menos para tu empresa.",
+    includes: ["Inspección", "Protocolos de seguridad", "Detector de metales"],
+  },
+  "sistemas-electronicos": {
+    title: "Sistemas de seguridad electrónica",
+    Icon: MonitorIcon,
+    summary:
+      "Cámaras de alta definición, vigilancia remota 24/7, cercado eléctrico y concertinas para tu perímetro.",
+    includes: ["Cámaras CCTV", "Vigilancia remota 24/7", "Cercado eléctrico", "Concertinas"],
+  },
+  "gestion-de-riesgos": {
+    title: "Gestión de riesgos y consultoría",
+    Icon: TargetIcon,
+    summary:
+      "Prevención, análisis y respuesta efectiva. Asesoría para diseñar el esquema de seguridad que tu operación necesita.",
+    includes: ["Prevención", "Análisis de riesgos", "Asesoría"],
+  },
+};

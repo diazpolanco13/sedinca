@@ -1,3 +1,5 @@
+"use client";
+
 import type {
   ButtonHTMLAttributes,
   InputHTMLAttributes,
@@ -5,6 +7,7 @@ import type {
   SelectHTMLAttributes,
   TextareaHTMLAttributes,
 } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/cn";
 
 /*
@@ -109,5 +112,48 @@ export function FieldError({ id, children }: { id: string; children?: ReactNode 
     <p id={id} className="m-0 text-sm leading-5 text-ink-danger">
       {children}
     </p>
+  );
+}
+
+/**
+ * Campo de archivo con textos propios en español (el control nativo usa el
+ * idioma del navegador). El input real cubre el recuadro y conserva foco y etiqueta.
+ */
+export function FileInput({
+  className,
+  onChange,
+  ...props
+}: Omit<InputHTMLAttributes<HTMLInputElement>, "type">) {
+  const [fileName, setFileName] = useState<string>();
+  return (
+    <div
+      className={cn(
+        "relative flex h-11 w-full items-center gap-3 rounded-(--radius) border border-line-strong bg-surface p-1.5 transition-[border-color,box-shadow]",
+        "focus-within:border-brand focus-within:shadow-[0_0_0_3px_var(--focus-halo)] has-[[aria-invalid=true]]:border-ink-danger",
+        className,
+      )}
+    >
+      <input
+        type="file"
+        className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+        onChange={(e) => {
+          setFileName(e.target.files?.[0]?.name);
+          onChange?.(e);
+        }}
+        {...props}
+      />
+      <span
+        aria-hidden="true"
+        className="inline-flex h-8 flex-none items-center rounded-[calc(var(--radius)-2px)] border-[1.5px] border-line bg-surface-brand px-4 font-display text-[13px] font-semibold tracking-[0.04em] text-ink-brand"
+      >
+        Seleccionar archivo
+      </span>
+      <span
+        aria-hidden="true"
+        className={cn("truncate text-[15px] leading-6", fileName ? "text-ink" : "text-ink-subtle")}
+      >
+        {fileName ?? "Ningún archivo seleccionado"}
+      </span>
+    </div>
   );
 }

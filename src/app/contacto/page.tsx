@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { QuoteForm } from "@/components/contact/QuoteForm";
 import { ChatIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SitePage } from "@/components/layout/SitePage";
+import { PageHero } from "@/components/ui/PageHero";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { emailHref, isPlaceholder, phoneHref, site, whatsappHref } from "@/config/site";
@@ -24,56 +24,57 @@ export default function ContactPage() {
   ];
 
   return (
-    <>
-      <SiteHeader variant="solid" />
-      <main>
-        <section className="bg-[image:var(--gradient-atmosphere)]">
-          <div className="mx-auto flex max-w-[1344px] flex-wrap items-start gap-12 px-4 pt-12 pb-16 sm:px-8 sm:pt-16 sm:pb-24">
-            <div className="flex min-w-0 flex-[1_1_360px] flex-col gap-6">
-              <Eyebrow>Contacto</Eyebrow>
-              <h1 className="m-0 font-display text-[clamp(36px,4vw,52px)] leading-[1.08] font-bold tracking-[-0.02em]">
-                Solicita tu cotización
-              </h1>
-              <p className="m-0 text-lg leading-7 text-ink-muted">
-                Cuéntanos qué necesitas proteger. Un asesor de SEDIN te contactará para coordinar la
-                inspección del sitio.
-              </p>
+    <SitePage>
+      <PageHero
+        crumbs={[{ label: "Contacto" }]}
+        eyebrow="Contacto"
+        title={{ text: "Solicita tu", highlight: "cotización" }}
+        lead="Cuéntanos qué necesitas proteger. Un asesor de SEDIN te contactará para coordinar la inspección del sitio."
+        primary={{ label: "Completar solicitud", href: "#solicitud" }}
+      />
 
-              <ul className="m-0 flex list-none flex-col gap-1 rounded-lg border border-line-card bg-surface p-2">
-                {channels.map(({ Icon, label, value, href }, i) => (
-                  <li
-                    key={label}
-                    className={
-                      i > 0
-                        ? "flex items-center gap-4 border-t border-line p-3"
-                        : "flex items-center gap-4 p-3"
-                    }
-                  >
-                    <Icon size={24} className="flex-none text-ink-brand" />
-                    <div>
-                      <div className="font-display text-[12px] font-semibold tracking-[0.06em] text-ink-muted uppercase">
-                        {label}
-                      </div>
-                      <ChannelValue href={href}>{value}</ChannelValue>
+      <section
+        id="solicitud"
+        aria-label="Canales y formulario"
+        className="scroll-mt-4 bg-[image:var(--gradient-atmosphere)]"
+      >
+        <div className="mx-auto flex max-w-[1344px] flex-wrap items-start gap-12 px-4 py-12 sm:px-8 sm:pt-16 sm:pb-24">
+          <div className="flex min-w-0 flex-[1_1_360px] flex-col gap-6">
+            <Eyebrow>Canales directos</Eyebrow>
+            <ul className="m-0 flex list-none flex-col gap-1 rounded-lg border border-line-card bg-surface p-2">
+              {channels.map(({ Icon, label, value, href }, i) => (
+                <li
+                  key={label}
+                  className={
+                    i > 0
+                      ? "flex items-center gap-4 border-t border-line p-3"
+                      : "flex items-center gap-4 p-3"
+                  }
+                >
+                  <Icon size={24} className="flex-none text-ink-brand" />
+                  <div>
+                    <div className="font-display text-[12px] font-semibold tracking-[0.06em] text-ink-muted uppercase">
+                      {label}
                     </div>
-                  </li>
-                ))}
-              </ul>
+                    <ChannelValue href={href}>{value}</ChannelValue>
+                  </div>
+                </li>
+              ))}
+            </ul>
 
-              <Placeholder
-                tone="map"
-                label="Espacio para mapa de ubicación de la oficina"
-                text="[Mapa de ubicación]"
-                className="h-[202px]"
-              />
-            </div>
-
-            <QuoteForm />
+            <Eyebrow>Ubicación</Eyebrow>
+            <Placeholder
+              tone="map"
+              label="Espacio para mapa de ubicación de la oficina"
+              text="[Mapa de ubicación]"
+              className="h-[202px]"
+            />
           </div>
-        </section>
-      </main>
-      <SiteFooter />
-    </>
+
+          <QuoteForm />
+        </div>
+      </section>
+    </SitePage>
   );
 }
 

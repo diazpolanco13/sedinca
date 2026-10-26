@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SiteFooter } from "@/components/layout/SiteFooter";
-import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SitePage } from "@/components/layout/SitePage";
 import { ServiceTemplate } from "@/components/service/ServiceTemplate";
 import { getService, servicesContent } from "@/content/services";
 
@@ -26,12 +25,8 @@ export default async function ServicePage({ params }: Props) {
   const service = getService((await params).slug);
   if (!service) notFound();
   return (
-    <>
-      <SiteHeader variant="solid" />
-      <main>
-        <ServiceTemplate service={service} />
-      </main>
-      <SiteFooter />
-    </>
+    <SitePage>
+      <ServiceTemplate service={service} />
+    </SitePage>
   );
 }
