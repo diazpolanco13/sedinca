@@ -7,11 +7,16 @@ export const site = {
   name: "SEDIN, C.A.",
   legalName: "Seguridad y Defensa Integral, Compañía Anónima",
   rif: "J-409643387",
-  phone: "[TELÉFONO]",
+  phone: "+58 414 164 2505",
   email: "[CORREO]",
-  address: "[DIRECCIÓN]",
+  address: "Calle 82 con Avenida 14, Centro Empresarial Grupo Assper, oficina 4",
+  city: "Maracaibo, estado Zulia",
+  /** Enlace de Google Maps facilitado por SEDIN (botón «Cómo llegar»). */
+  mapsUrl: "https://maps.app.goo.gl/PgfeYRKxr6gurjzh9",
+  /** Búsqueda usada para el mapa incrustado de Contacto. */
+  mapQuery: "Centro Empresarial Grupo Assper, Calle 82 con Avenida 14, Maracaibo, Zulia, Venezuela",
   hours: "[HORARIO]",
-  whatsappNumber: "[NÚMERO DE WHATSAPP]",
+  whatsappNumber: "+58 414 164 2505",
   responseTime: "[TIEMPO DE RESPUESTA]",
   jobRequirements: "[REQUISITOS DE POSTULACIÓN]",
   /** Endpoint que recibe el formulario de cotización (POST JSON). Vacío = sin envío. */

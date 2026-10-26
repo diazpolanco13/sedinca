@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { routes, services, site } from "@/config/site";
+import { phoneHref, routes, services, site } from "@/config/site";
 
 const linkClass = "text-titanium-300 no-underline transition-colors hover:text-white";
 const headingClass =
   "font-display text-xs leading-5 font-bold tracking-[0.08em] text-white uppercase";
 
 export function SiteFooter() {
+  const tel = phoneHref();
   return (
     <footer className="on-dark bg-azure-950 text-titanium-300">
       <div className="mx-auto flex max-w-[1344px] flex-col gap-10 px-4 pt-16 pb-8 sm:px-8">
@@ -38,9 +39,17 @@ export function SiteFooter() {
           </nav>
           <div className="flex flex-col gap-2 text-sm leading-5">
             <span className={headingClass}>Contacto</span>
-            <span>{site.phone}</span>
+            {tel ? (
+              <a href={tel} className={linkClass}>
+                {site.phone}
+              </a>
+            ) : (
+              <span>{site.phone}</span>
+            )}
             <span>{site.email}</span>
-            <span>{site.address}</span>
+            <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
+              {site.address}, {site.city}
+            </a>
           </div>
         </div>
         <div className="flex flex-wrap justify-between gap-3 border-t border-azure-200/16 pt-6 text-[13px] leading-[18px]">

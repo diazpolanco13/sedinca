@@ -6,7 +6,7 @@ import { FeatureBand, SectionHeader, StepList } from "@/components/ui/blocks";
 import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { PageHero } from "@/components/ui/PageHero";
-import { site } from "@/config/site";
+import { phoneHref, site } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Trabaja con nosotros",
@@ -164,7 +164,10 @@ export default function JobsPage() {
               </li>
               <li className="border-t border-line p-3">
                 <span className="field-label block">Consultas</span>
-                {site.phone} · {site.email}
+                <a href={phoneHref()} className="text-ink no-underline hover:text-ink-brand">
+                  {site.phone}
+                </a>{" "}
+                · {site.email}
               </li>
             </ul>
           </div>

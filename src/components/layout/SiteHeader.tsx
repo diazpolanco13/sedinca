@@ -137,7 +137,13 @@ export function SiteHeader() {
             })}
           </nav>
           <div className="flex flex-col gap-4 pt-4">
-            <span className="text-white/75">{site.phone}</span>
+            {tel ? (
+              <a href={tel} className="text-white/90 no-underline">
+                {site.phone}
+              </a>
+            ) : (
+              <span className="text-white/75">{site.phone}</span>
+            )}
             <Link
               href={routes.contact}
               onClick={() => setOpen(false)}

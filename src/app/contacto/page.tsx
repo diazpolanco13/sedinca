@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import { OfficeMap } from "@/components/contact/OfficeMap";
 import { QuoteForm } from "@/components/contact/QuoteForm";
-import { ChatIcon, MailIcon, PhoneIcon, PinIcon } from "@/components/icons";
+import { ChatIcon, ClockIcon, MailIcon, PhoneIcon } from "@/components/icons";
 import { SitePage } from "@/components/layout/SitePage";
 import { PageHero } from "@/components/ui/PageHero";
-import { Placeholder } from "@/components/ui/Placeholder";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { emailHref, isPlaceholder, phoneHref, site, whatsappHref } from "@/config/site";
 
@@ -20,7 +20,7 @@ export default function ContactPage() {
     { Icon: PhoneIcon, label: "Teléfono", value: site.phone, href: phoneHref() },
     { Icon: ChatIcon, label: "WhatsApp", value: site.whatsappNumber, href: wa },
     { Icon: MailIcon, label: "Correo", value: site.email, href: emailHref() },
-    { Icon: PinIcon, label: "Oficina", value: `${site.address} · ${site.hours}` },
+    { Icon: ClockIcon, label: "Horario de oficina", value: site.hours },
   ];
 
   return (
@@ -63,12 +63,7 @@ export default function ContactPage() {
             </ul>
 
             <Eyebrow>Ubicación</Eyebrow>
-            <Placeholder
-              tone="map"
-              label="Espacio para mapa de ubicación de la oficina"
-              text="[Mapa de ubicación]"
-              className="h-[202px]"
-            />
+            <OfficeMap />
           </div>
 
           <QuoteForm />
