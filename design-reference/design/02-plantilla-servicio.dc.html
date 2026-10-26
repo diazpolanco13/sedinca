@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Vigilancia privada — SEDIN</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../design-system/tokens.css">
+<link rel="stylesheet" href="../design-system/components/bundle.css">
+<script src="../design-system/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0059A4}a:hover{color:#0D2E68}
+</style>
+</helmet>
+<div style="width: 100%; min-height: 100vh; background: var(--bg); color: var(--ink); font-family: var(--font-sans);">
+
+  <header style="background: var(--surface); border-bottom: 1px solid var(--line);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 12px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+      <a href="01-inicio.dc.html" style="display: block;"><img src="../assets/logo-sedin-fondo-claro.png" alt="SEDIN, C.A — inicio" style="height: 56px; width: auto; display: block; mix-blend-mode: multiply;"></a>
+      <nav aria-label="Principal" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 28px; font-family: var(--font-display); font-size: 15px; line-height: 20px; font-weight: 600;">
+        <a href="01-inicio.dc.html#servicios" style="color: var(--ink-brand); text-decoration: none; padding: 12px 0; border-bottom: 2px solid var(--brand);">Servicios</a>
+        <a href="01-inicio.dc.html#sectores" style="color: var(--ink); text-decoration: none; padding: 12px 0;">Sectores</a>
+        <a href="01-inicio.dc.html#nosotros" style="color: var(--ink); text-decoration: none; padding: 12px 0;">Nosotros</a>
+        <a href="01-inicio.dc.html#empleo" style="color: var(--ink); text-decoration: none; padding: 12px 0;">Trabaja con nosotros</a>
+        <a href="03-contacto.dc.html" style="color: var(--ink); text-decoration: none; padding: 12px 0;">Contacto</a>
+      </nav>
+      <a href="03-contacto.dc.html" style="display: inline-flex; align-items: center; height: 44px; padding: 0 24px; border-radius: var(--radius); background: var(--gradient-action); color: var(--on-brand); font-family: var(--font-display); font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; box-shadow: var(--inset-highlight);">Solicitar cotización</a>
+    </div>
+  </header>
+
+  <!-- Hero del servicio -->
+  <section style="background-image: var(--gradient-atmosphere); border-bottom: 1px solid var(--line);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 32px 32px 72px; display: flex; flex-direction: column; gap: 32px;">
+      <nav aria-label="Ruta" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; line-height: 20px; color: var(--ink-muted);">
+        <a href="01-inicio.dc.html" style="color: var(--ink-brand); text-decoration: none;">Inicio</a><span>/</span>
+        <a href="01-inicio.dc.html#servicios" style="color: var(--ink-brand); text-decoration: none;">Servicios</a><span>/</span>
+        <span aria-current="page">Vigilancia privada</span>
+      </nav>
+      <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: center;">
+        <div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px;">
+          <span style="font-family: var(--font-display); font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-brand);">Servicio</span>
+          <h1 style="margin: 0; font-family: var(--font-display); font-size: clamp(40px, 5vw, 60px); line-height: 1.05; font-weight: 700; letter-spacing: -0.02em;">Servicio de vigilancia <span style="color: var(--brand);">privada</span></h1>
+          <p style="margin: 0; font-size: 18px; line-height: 28px; color: var(--ink-muted); max-width: 540px;">Protegemos lo que más te importa. Oficiales de seguridad para conjuntos residenciales, condominios, empresas e industria, con presencia disuasiva y respuesta inmediata.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <a href="03-contacto.dc.html" style="display: inline-flex; align-items: center; height: 48px; padding: 0 28px; border-radius: var(--radius); background: var(--gradient-action); color: var(--on-brand); font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; box-shadow: var(--inset-highlight);">Cotizar este servicio</a>
+            <a href="#modalidades" style="display: inline-flex; align-items: center; height: 48px; padding: 0 28px; border-radius: var(--radius); background: var(--surface); border: 1.5px solid var(--line); color: var(--ink); font-family: var(--font-display); font-size: 15px; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;">Ver modalidades</a>
+          </div>
+        </div>
+        <div role="img" aria-label="Espacio para fotografía: oficial de seguridad en la garita de un conjunto residencial de noche" style="flex: 1 1 440px; min-width: 0; height: 400px; border-radius: var(--radius-xl); background-color: var(--azure-900); background-image: radial-gradient(rgba(144, 224, 239, 0.35) 1.5px, transparent 1.5px); background-size: 16px 16px; display: flex; align-items: center; justify-content: center; padding: 32px; box-sizing: border-box;">
+          <span style="font-family: var(--font-display); font-size: 13px; line-height: 20px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--azure-100); text-align: center; max-width: 300px;">[Foto] Oficial en garita de conjunto residencial, de noche</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modalidades -->
+  <section id="modalidades">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 88px 32px 56px; display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 640px;">
+        <span style="font-family: var(--font-display); font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-brand);">Modalidades</span>
+        <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.01em;">Fija o móvil, según lo que necesitas proteger</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <x-import component-from-global-scope="Sedin.Card" accent="{{yes}}" elevation="{{one}}">
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 8px;">
+            <x-import component-from-global-scope="Sedin.Chip" live="{{yes}}" style="align-self: flex-start;">Puesto permanente</x-import>
+            <h3 style="margin: 0; font-family: var(--font-display); font-size: 24px; line-height: 32px; font-weight: 600;">Vigilancia fija</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--ink-muted);">Oficiales de seguridad asignados a un lugar determinado para proteger a las personas y los bienes muebles e inmuebles que allí se encuentran.</p>
+          </div>
+        </x-import>
+        <x-import component-from-global-scope="Sedin.Card" accent="{{yes}}" elevation="{{one}}">
+          <div style="display: flex; flex-direction: column; gap: 12px; padding: 8px;">
+            <x-import component-from-global-scope="Sedin.Chip" style="align-self: flex-start;">Rondas y patrullaje</x-import>
+            <h3 style="margin: 0; font-family: var(--font-display); font-size: 24px; line-height: 32px; font-weight: 600;">Vigilancia móvil</h3>
+            <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--ink-muted);">Oficiales móviles que protegen personas y bienes en un área o sector delimitado, con recorridos y supervisión constante.</p>
+          </div>
+        </x-import>
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section aria-label="Beneficios" style="background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 56px 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0059A4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+        <div style="font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 700;">Seguridad confiable</div>
+        <div style="font-size: 15px; line-height: 22px; color: var(--ink-muted);">Personal altamente capacitado y comprometido con tu tranquilidad.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0059A4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div style="font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 700;">Vigilancia 24/7</div>
+        <div style="font-size: 15px; line-height: 22px; color: var(--ink-muted);">Monitoreo constante y control de accesos para mayor protección.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0059A4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20v-1a5 5 0 015-5h2a5 5 0 015 5v1M15.5 14H17a4 4 0 014 4v2"/></svg>
+        <div style="font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 700;">Presencia disuasiva</div>
+        <div style="font-size: 15px; line-height: 22px; color: var(--ink-muted);">Prevención efectiva ante cualquier situación de riesgo.</div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0059A4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 01-3 2h-3"/></svg>
+        <div style="font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 700;">Atención inmediata</div>
+        <div style="font-size: 15px; line-height: 22px; color: var(--ink-muted);">Respuesta rápida y coordinada ante cualquier novedad.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cómo trabajamos -->
+  <section aria-label="Cómo trabajamos">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 88px 32px; display: flex; flex-direction: column; gap: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 640px;">
+        <span style="font-family: var(--font-display); font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-brand);">Cómo trabajamos</span>
+        <h2 style="margin: 0; font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.01em;">Del primer recorrido al reporte de novedades</h2>
+      </div>
+      <ol style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;">
+        <li style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 2px solid var(--brand);">
+          <span style="font-family: var(--font-display); font-size: 32px; line-height: 36px; font-weight: 700; color: var(--brand);">01</span>
+          <span style="font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 600;">Inspección del sitio</span>
+          <span style="font-size: 15px; line-height: 22px; color: var(--ink-muted);">Visitamos las instalaciones y evaluamos accesos, perímetro y riesgos.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 2px solid var(--brand);">
+          <span style="font-family: var(--font-display); font-size: 32px; line-height: 36px; font-weight: 700; color: var(--brand);">02</span>
+          <span style="font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 600;">Propuesta a la medida</span>
+          <span style="font-size: 15px; line-height: 22px; color: var(--ink-muted);">Definimos modalidad, turnos y número de oficiales.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 2px solid var(--brand);">
+          <span style="font-family: var(--font-display); font-size: 32px; line-height: 36px; font-weight: 700; color: var(--brand);">03</span>
+          <span style="font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 600;">Puesta en servicio</span>
+          <span style="font-size: 15px; line-height: 22px; color: var(--ink-muted);">Oficiales uniformados y equipados con radio, libro de novedades y controles de entrada y salida.</span>
+        </li>
+        <li style="display: flex; flex-direction: column; gap: 10px; padding-top: 20px; border-top: 2px solid var(--brand);">
+          <span style="font-family: var(--font-display); font-size: 32px; line-height: 36px; font-weight: 700; color: var(--brand);">04</span>
+          <span style="font-family: var(--font-display); font-size: 18px; line-height: 24px; font-weight: 600;">Supervisión continua</span>
+          <span style="font-size: 15px; line-height: 22px; color: var(--ink-muted);">Supervisores verifican el servicio y te informan cada novedad.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Sectores + CTA -->
+  <section aria-label="Dónde aplica" style="background: var(--surface-sunken);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 72px 32px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between;">
+      <div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-family: var(--font-display); font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-brand);">Dónde aplica</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <x-import component-from-global-scope="Sedin.Chip">Conjuntos residenciales</x-import>
+          <x-import component-from-global-scope="Sedin.Chip">Condominios</x-import>
+          <x-import component-from-global-scope="Sedin.Chip">Oficinas</x-import>
+          <x-import component-from-global-scope="Sedin.Chip">Plantas y almacenes</x-import>
+          <x-import component-from-global-scope="Sedin.Chip">Industria petrolera</x-import>
+        </div>
+        <span style="font-size: 14px; line-height: 20px; color: var(--ink-muted);">Servicios relacionados: <a href="01-inicio.dc.html#servicios">Control de acceso</a> · <a href="01-inicio.dc.html#servicios">Sistemas electrónicos</a></span>
+      </div>
+      <a href="03-contacto.dc.html" style="display: inline-flex; align-items: center; height: 52px; padding: 0 32px; border-radius: var(--radius); background: var(--gradient-action); color: var(--on-brand); font-family: var(--font-display); font-size: 16px; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; box-shadow: var(--inset-highlight), var(--glow-cyan);">Solicitar cotización</a>
+    </div>
+  </section>
+
+  <footer style="background: var(--azure-950); color: var(--titanium-300);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; line-height: 18px;">
+      <span style="font-family: var(--font-display); font-size: 16px; font-weight: 700; color: #FFFFFF;">SEDIN, C.A.</span>
+      <span>Pie de página completo: ver 02 · Inicio</span>
+      <span>RIF J-409643387</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3000}}'>
+class Component extends DCLogic {
+  renderVals() { return { yes: true, one: 1 }; }
+}
+</script>
+</body>
+</html>

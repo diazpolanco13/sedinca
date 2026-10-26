@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mapa del sitio — SEDIN</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../design-system/tokens.css">
+<link rel="stylesheet" href="../design-system/components/bundle.css">
+<script src="../design-system/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#0059A4}a:hover{color:#0D2E68}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; box-sizing: border-box; padding: 56px 64px; background: var(--bg); color: var(--ink); font-family: var(--font-sans); display: flex; flex-direction: column; gap: 32px;">
+
+  <header style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <span style="font-family: var(--font-display); font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-brand);">Propuesta de estructura · Web preliminar</span>
+      <h1 style="margin: 0; font-family: var(--font-display); font-size: 48px; line-height: 56px; font-weight: 700; letter-spacing: -0.02em;">Mapa del sitio</h1>
+      <p style="margin: 0; font-size: 16px; line-height: 24px; color: var(--ink-muted); max-width: 720px;">Cinco secciones principales que ordenan los servicios de SEDIN por lo que el cliente busca: qué se protege, para quién y cómo contactar.</p>
+    </div>
+    <img src="../assets/logo-sedin-fondo-claro.png" alt="SEDIN, C.A" style="height: 96px; width: auto; display: block; mix-blend-mode: multiply;">
+  </header>
+
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <div style="display: flex; align-items: center; gap: 16px; padding: 16px 28px; border-radius: var(--radius-lg); background: var(--gradient-action); color: var(--on-brand); box-shadow: var(--elevation-2);">
+      <span style="font-family: var(--font-display); font-size: 24px; line-height: 32px; font-weight: 700;">Inicio</span>
+      <span style="font-family: var(--font-display); font-size: 12px; letter-spacing: 0.06em; opacity: .85;">/</span>
+    </div>
+    <div style="width: 2px; height: 28px; background: var(--line-strong);"></div>
+    <div style="width: 80%; height: 2px; background: var(--line-strong);"></div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; margin-top: -32px;">
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 2px; height: 28px; background: var(--line-strong);"></div>
+      <x-import component-from-global-scope="Sedin.Card" accent="{{yes}}" style="width: 100%; box-sizing: border-box;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <div style="font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 600;">Servicios</div>
+            <div style="font-family: var(--font-display); font-size: 12px; line-height: 16px; color: var(--ink-muted);">/servicios</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Vigilancia privada</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Fija y móvil · residencial, empresas, industria</div>
+            <x-import component-from-global-scope="Sedin.Chip" style="align-self: flex-start; margin-top: 4px;">Plantilla 03</x-import>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Control de acceso y salida de personal</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Inspección, protocolos, detector de metales</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Sistemas de seguridad electrónica</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Cámaras CCTV · Vigilancia remota 24/7 · Cercado eléctrico · Concertinas</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Gestión de riesgos y consultoría</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Prevención, análisis, asesoría</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 2px; height: 28px; background: var(--line-strong);"></div>
+      <x-import component-from-global-scope="Sedin.Card" accent="{{yes}}" style="width: 100%; box-sizing: border-box;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <div style="font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 600;">Sectores</div>
+            <div style="font-family: var(--font-display); font-size: 12px; line-height: 16px; color: var(--ink-muted);">/sectores</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Industria petrolera</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Instalaciones, activos críticos, operaciones de alto riesgo</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Empresas e industria</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Oficinas, plantas, almacenes, centros de distribución</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Corporaciones</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Soluciones a la medida, discreción y control</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Residencial y condominios</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Presencia disuasiva y control de accesos</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 2px; height: 28px; background: var(--line-strong);"></div>
+      <x-import component-from-global-scope="Sedin.Card" accent="{{yes}}" style="width: 100%; box-sizing: border-box;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <div style="font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 600;">Nosotros</div>
+            <div style="font-family: var(--font-display); font-size: 12px; line-height: 16px; color: var(--ink-muted);">/nosotros</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Quiénes somos</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Seguridad y Defensa Integral, C.A.</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Valores</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Seguridad · Orden · Disciplina · Control · Responsabilidad</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Personal capacitado</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Formación, trato respetuoso y profesional</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Gestión de calidad</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Procedimientos y mejora continua</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 2px; height: 28px; background: var(--line-strong);"></div>
+      <x-import component-from-global-scope="Sedin.Card" accent="{{yes}}" style="width: 100%; box-sizing: border-box;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <div style="font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 600;">Trabaja con nosotros</div>
+            <div style="font-family: var(--font-display); font-size: 12px; line-height: 16px; color: var(--ink-muted);">/empleo</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Vacantes</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Oficiales de seguridad, supervisores</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Postulación</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Requisitos y formulario con CV</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 2px; height: 28px; background: var(--line-strong);"></div>
+      <x-import component-from-global-scope="Sedin.Card" accent="{{yes}}" style="width: 100%; box-sizing: border-box;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div>
+            <div style="font-family: var(--font-display); font-size: 20px; line-height: 28px; font-weight: 600;">Contacto</div>
+            <div style="font-family: var(--font-display); font-size: 12px; line-height: 16px; color: var(--ink-muted);">/contacto</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Solicitar cotización</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Formulario por servicio y sector</div>
+            <x-import component-from-global-scope="Sedin.Chip" style="align-self: flex-start; margin-top: 4px;">Página 04</x-import>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Canales directos</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Teléfono, WhatsApp, correo</div>
+          </div>
+          <div style="padding-top: 12px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px;">
+            <div style="font-size: 14px; line-height: 20px; font-weight: 600;">Ubicación</div>
+            <div style="font-size: 13px; line-height: 18px; color: var(--ink-muted);">Oficina, horario, mapa</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+  </div>
+
+  <div style="margin-top: auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding: 20px 24px; border-radius: var(--radius-lg); background: var(--surface-inverse); color: var(--ink-inverse);">
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-family: var(--font-display); font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan-200);">En todas las páginas</span>
+      <span style="font-size: 14px; line-height: 20px;">Barra superior: logo, menú y botón «Solicitar cotización».</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-family: var(--font-display); font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan-200);">Pie de página</span>
+      <span style="font-size: 14px; line-height: 20px;">Servicios, contacto, RIF J-409643387 y enlaces legales.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <span style="font-family: var(--font-display); font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan-200);">Siempre visible</span>
+      <span style="font-size: 14px; line-height: 20px;">Botón flotante de WhatsApp para atención inmediata.</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() { return { yes: true }; }
+}
+</script>
+</body>
+</html>

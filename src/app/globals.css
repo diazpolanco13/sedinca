@@ -1,26 +1,194 @@
 @import "tailwindcss";
+@import "../styles/tokens.css";
+
+/*
+ * Tailwind lee los tokens de SEDIN (src/styles/tokens.css, sin capa, por lo
+ * que sus valores prevalecen sobre los del tema). Se desactiva la paleta por
+ * defecto para que solo existan colores de marca.
+ */
+@theme inline {
+  --color-*: initial;
+  --color-white: var(--white);
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-brand: var(--surface-brand);
+  --color-surface-inverse: var(--surface-inverse);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-ink-brand: var(--ink-brand);
+  --color-ink-accent: var(--ink-accent);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-line-card: var(--line-card);
+  --color-line-glass: var(--line-glass);
+  --color-line-cyan: var(--line-cyan);
+  --color-line-modal: var(--line-modal);
+  --color-glass-1: var(--glass-1);
+  --color-glass-card: var(--glass-card);
+  --color-glass-2: var(--glass-2);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-deep: var(--brand-deep);
+  --color-on-brand: var(--on-brand);
+  --color-accent: var(--accent);
+  --color-focus-ring: var(--focus-ring);
+  --color-success: var(--success);
+  --color-success-subtle: var(--success-subtle);
+  --color-ink-success: var(--ink-success);
+  --color-warning: var(--warning);
+  --color-warning-subtle: var(--warning-subtle);
+  --color-ink-warning: var(--ink-warning);
+  --color-danger: var(--danger);
+  --color-danger-subtle: var(--danger-subtle);
+  --color-ink-danger: var(--ink-danger);
+  /* Velo oscuro de la portada (= surface-sunken del tema oscuro). */
+  --color-scrim: #040d1f;
+
+  --color-azure-50: var(--azure-50);
+  --color-azure-100: var(--azure-100);
+  --color-azure-200: var(--azure-200);
+  --color-azure-300: var(--azure-300);
+  --color-azure-400: var(--azure-400);
+  --color-azure-500: var(--azure-500);
+  --color-azure-600: var(--azure-600);
+  --color-azure-700: var(--azure-700);
+  --color-azure-800: var(--azure-800);
+  --color-azure-900: var(--azure-900);
+  --color-azure-950: var(--azure-950);
+  --color-cyan-50: var(--cyan-50);
+  --color-cyan-100: var(--cyan-100);
+  --color-cyan-200: var(--cyan-200);
+  --color-cyan-300: var(--cyan-300);
+  --color-cyan-400: var(--cyan-400);
+  --color-cyan-500: var(--cyan-500);
+  --color-cyan-600: var(--cyan-600);
+  --color-cyan-700: var(--cyan-700);
+  --color-titanium-50: var(--titanium-50);
+  --color-titanium-100: var(--titanium-100);
+  --color-titanium-200: var(--titanium-200);
+  --color-titanium-300: var(--titanium-300);
+  --color-titanium-400: var(--titanium-400);
+  --color-titanium-500: var(--titanium-500);
+  --color-titanium-600: var(--titanium-600);
+  --color-titanium-700: var(--titanium-700);
+  --color-titanium-800: var(--titanium-800);
+  --color-titanium-900: var(--titanium-900);
+
+  --shadow-elevation-1: var(--elevation-1);
+  --shadow-elevation-2: var(--elevation-2);
+  --shadow-elevation-3: var(--elevation-3);
+  --shadow-glow-cyan: var(--glow-cyan);
+  --shadow-inset-highlight: var(--inset-highlight);
+  --shadow-cta: var(--inset-highlight), 0 6px 24px rgba(0, 114, 206, 0.45);
+  --shadow-cta-hover: var(--inset-highlight), 0 6px 24px rgba(0, 114, 206, 0.45), var(--glow-cyan);
+
+  --blur-glass-1: var(--blur-1);
+  --blur-glass-2: var(--blur-2);
+}
+
+/* Las familias las inyecta next/font (variables en <html>). */
+@theme {
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: Inter, system-ui, sans-serif;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-display: var(--font-space-grotesk), system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  /* Los diseños usan el interlineado por defecto del navegador. */
+  html {
+    line-height: normal;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a {
+    color: var(--ink-brand);
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Superficies oscuras: el foco usa el anillo del tema oscuro (cian). */
+@utility on-dark {
+  --focus-ring: var(--cyan-400);
+}
+
+/* Etiqueta de sección (label-md en mayúsculas). */
+@utility eyebrow {
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Etiqueta de campo de formulario (sd-field-label). */
+@utility field-label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+/* Trama de puntos del key visual, para espacios de fotografía. */
+@utility dot-grid {
+  background-image: radial-gradient(rgba(144, 224, 239, 0.3) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+/* Variante clara de la trama (mapas, recuadros sobre fondo claro). */
+@utility dot-grid-brand {
+  background-image: radial-gradient(rgba(0, 114, 206, 0.25) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+/* Pulso del indicador en vivo (Chip). */
+@keyframes sd-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 180, 216, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 6px rgba(0, 180, 216, 0);
+  }
+}
+
+/* Velos de la portada: oscurecen la izquierda y el borde superior. */
+.hero-scrim {
+  background-image:
+    linear-gradient(180deg, rgba(4, 13, 31, 0.55) 0%, rgba(4, 13, 31, 0) 22%),
+    linear-gradient(90deg, rgba(4, 13, 31, 0.78) 0%, rgba(4, 13, 31, 0.5) 38%, rgba(4, 13, 31, 0) 64%);
+}
+@media (max-width: 900px) {
+  .hero-scrim {
+    background-image: linear-gradient(180deg, rgba(4, 13, 31, 0.7) 0%, rgba(4, 13, 31, 0.6) 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
