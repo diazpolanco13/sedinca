@@ -1,33 +1,6 @@
-import { BriefcaseIcon, BuildingIcon, FactoryIcon, HomeIcon } from "@/components/icons";
-import { Placeholder } from "@/components/ui/Placeholder";
+import Image from "next/image";
 import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
-
-const sectors = [
-  {
-    Icon: FactoryIcon,
-    photo: "Espacio para fotografía de instalación petrolera",
-    title: "Industria petrolera",
-    text: "Protección de instalaciones, activos críticos y personal en operaciones de alto riesgo.",
-  },
-  {
-    Icon: BuildingIcon,
-    photo: "Espacio para fotografía de planta o almacén",
-    title: "Empresas e industria",
-    text: "Seguridad corporativa para oficinas, plantas, almacenes y centros de distribución.",
-  },
-  {
-    Icon: BriefcaseIcon,
-    photo: "Espacio para fotografía de sede corporativa",
-    title: "Corporaciones",
-    text: "Soluciones a la medida, discreción, control y protección para tu tranquilidad.",
-  },
-  {
-    Icon: HomeIcon,
-    photo: "Espacio para fotografía de conjunto residencial",
-    title: "Residencial y condominios",
-    text: "Presencia disuasiva, vigilancia 24/7 y control de accesos para conjuntos residenciales.",
-  },
-];
+import { sectorsContent } from "@/content/sectors";
 
 /** 04 · Sectores. */
 export function Sectors() {
@@ -41,12 +14,23 @@ export function Sectors() {
           </SectionTitle>
         </div>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-6">
-          {sectors.map(({ Icon, photo, title, text }) => (
+          {sectorsContent.map(({ id, Icon, photo, title, text }) => (
             <div
-              key={title}
+              key={id}
               className="flex flex-col gap-3 rounded-lg border border-line-card bg-surface p-6"
             >
-              <Placeholder label={photo} icon={<Icon size={28} />} className="h-40" />
+              <div className="relative h-40 overflow-hidden rounded-md">
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(min-width: 1280px) 256px, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <span className="absolute bottom-3 left-3 flex h-10 w-10 items-center justify-center rounded-md bg-surface-brand text-ink-brand">
+                  <Icon size={22} />
+                </span>
+              </div>
               <h3 className="m-0 font-display text-xl leading-7 font-semibold">{title}</h3>
               <p className="m-0 text-[15px] leading-[22px] text-ink-muted">{text}</p>
             </div>
