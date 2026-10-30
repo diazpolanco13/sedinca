@@ -155,8 +155,8 @@ function SectorIntro({ sector }: { sector: SectorContent }) {
     <Section tone="light" id="riesgos" labelledBy="riesgos-titulo">
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
         {/* Foto de IA, solo ambientación (nunca «nuestro equipo»). Recorte
-            vertical o cuadrado: nunca más ancho que 1:1 (ver sectorView). */}
-        <div className="relative isolate flex aspect-square overflow-hidden rounded-xl bg-azure-950 shadow-elevation-2 lg:col-span-5 lg:aspect-auto lg:min-h-[560px]">
+            vertical o cuadrado, centrado en el oficial (ver sectorView). */}
+        <div className="relative isolate flex aspect-[3/4] overflow-hidden rounded-xl bg-azure-950 shadow-elevation-2 sm:aspect-square lg:col-span-5 lg:aspect-auto lg:min-h-[560px]">
           <Image
             src={photo.src}
             alt={sector.photo.alt}
@@ -165,11 +165,11 @@ function SectorIntro({ sector }: { sector: SectorContent }) {
             className={cn("-z-10 object-cover", photo.position)}
           />
           {/* Velo más denso a media altura: el antetítulo cae a veces sobre cielo claro.
-              Desde 1024px (tarjeta alta, gancho más corto), solo en la mitad
-              inferior: el oficial de la foto queda a la vista. */}
+              En las tarjetas altas (móvil en 3:4 y desde 1024px), solo en la
+              mitad inferior: el oficial de la foto queda a la vista. */}
           <span
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-linear-to-t from-azure-950/95 via-azure-950/70 to-azure-950/0 lg:from-20% lg:via-azure-950/60 lg:via-45% lg:to-65%"
+            className="absolute inset-0 -z-10 bg-linear-to-t from-azure-950/95 via-azure-950/70 to-azure-950/0 max-sm:from-20% max-sm:via-azure-950/60 max-sm:via-45% max-sm:to-65% lg:from-20% lg:via-azure-950/60 lg:via-45% lg:to-65%"
           />
           <div className="mt-auto flex flex-col gap-3 p-6 sm:p-8">
             <span className="eyebrow inline-flex items-center gap-3 text-cyan-200 [text-shadow:0_1px_8px_rgba(4,13,31,0.6)]">

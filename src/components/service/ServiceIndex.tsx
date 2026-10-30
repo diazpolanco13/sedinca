@@ -132,9 +132,8 @@ export function ConcernGrid() {
 
 /**
  * Foto de ambientación de cada servicio (fotos de IA de los sectores, nunca
- * «nuestro equipo»). Siempre en recorte vertical con `sectorPhoto()`: la de
- * petróleo recorta a la derecha (texto inventado en la espalda) y la de
- * comercio evita la placa con un nombre.
+ * «nuestro equipo»). Siempre en recorte vertical con `sectorPhoto()`, centrado
+ * en el oficial.
  */
 const servicePhoto: Record<ServiceSlug, SectorSlug> = {
   "vigilancia-privada": "condominios",

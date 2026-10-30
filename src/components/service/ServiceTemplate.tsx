@@ -38,10 +38,15 @@ const sectorGrid = {
     card: "sm:aspect-[4/5] lg:aspect-square",
     sizes: "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
   },
-  /* 2×2 también en móvil (como el selector de Inicio): la sección medía casi dos pantallas. */
+  /* 2×2 también en móvil (como el selector de Inicio): la sección medía casi dos pantallas.
+     Ahí el texto va en 3 líneas como máximo: los de servicio son largos y taparían al oficial. */
   4: {
     list: "grid-cols-2 lg:grid-cols-4",
-    card: cn("sm:aspect-[4/5]", photoCardMobile),
+    card: cn(
+      "sm:aspect-[4/5]",
+      photoCardMobile,
+      "max-sm:[&>span:last-child>span:nth-last-child(2)]:line-clamp-3",
+    ),
     sizes: "(min-width: 1024px) 25vw, 50vw",
   },
 } as const;
@@ -49,11 +54,12 @@ const sectorGrid = {
 /**
  * Encuadre de las fotos de sector en tarjetas verticales o cuadradas, para que
  * el oficial quede dentro del recorte. Solo para las fotos sin `position`
- * propia (la de petróleo trae la suya: recorta el texto inventado).
+ * propia.
  */
 const portraitFocus: Partial<Record<SectorContent["id"], string>> = {
+  "petroleo-y-energia": "object-[22%_center]",
   "industria-y-logistica": "object-[15%_center]",
-  "comercio-y-oficinas": "object-[28%_center]",
+  "comercio-y-oficinas": "object-[24%_center]",
   condominios: "object-[30%_center]",
 };
 
@@ -198,6 +204,7 @@ export function ServiceTemplate({ service }: { service: ServiceContent }) {
                     photo={{
                       src: sector.photo.src,
                       position: sector.photo.position ?? portraitFocus[sector.id],
+                      portrait: sector.photo.portrait,
                     }}
                     Icon={sector.Icon}
                     aspect="square"

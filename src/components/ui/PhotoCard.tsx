@@ -22,6 +22,10 @@ const aspects = {
  * Las fotos de sectores son de IA: úselas como ambientación (nunca como
  * «nuestro equipo»). La foto es decorativa (alt vacío): el nombre del enlace
  * lo da el título.
+ *
+ * `photo.portrait`: recorte vertical (3:4) que se sirve por debajo de 640px,
+ * donde las tarjetas van en cuadrícula 2×2 y el texto taparía al oficial de
+ * la foto ancha.
  */
 export function PhotoCard({
   href,
@@ -47,7 +51,7 @@ export function PhotoCard({
   text?: string;
   /** Texto del pie con flecha («Ver sector»). */
   cta?: string;
-  photo: { src: string; position?: string };
+  photo: { src: string; position?: string; portrait?: string };
   Icon?: IconType;
   aspect?: keyof typeof aspects;
   /** Ancho real de la tarjeta en cada punto de corte. */
@@ -76,6 +80,20 @@ export function PhotoCard({
   className?: string;
 }) {
   const Heading = headingLevel;
+  const image = (
+    <Image
+      src={photo.src}
+      alt=""
+      fill
+      sizes={sizes}
+      priority={priority}
+      className={cn(
+        "-z-10 object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100",
+        photo.position,
+        photo.portrait && "max-sm:object-center",
+      )}
+    />
+  );
   return (
     <Link
       href={href}
@@ -87,17 +105,14 @@ export function PhotoCard({
         className,
       )}
     >
-      <Image
-        src={photo.src}
-        alt=""
-        fill
-        sizes={sizes}
-        priority={priority}
-        className={cn(
-          "-z-10 object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100",
-          photo.position,
-        )}
-      />
+      {photo.portrait ? (
+        <picture>
+          <source media="(max-width: 639.98px)" srcSet={photo.portrait} />
+          {image}
+        </picture>
+      ) : (
+        image
+      )}
       <span aria-hidden="true" className={cn("absolute inset-0 -z-10", scrimClassName)} />
       <span
         aria-hidden="true"

@@ -10,14 +10,13 @@ import { selectorCopy } from "./homeContent";
 
 /**
  * Recorte de cada foto en las tarjetas verticales de Inicio, para que el
- * oficial quede dentro del encuadre. Petróleo conserva SIEMPRE el suyo
- * (`sector.photo.position`): recorta a la derecha para no mostrar el texto
- * inventado de la espalda del uniforme (nunca en formato ancho).
+ * oficial quede dentro del encuadre.
  */
 const homeCrop: Partial<Record<SectorSlug, string>> = {
+  "petroleo-y-energia": "object-[22%_center]",
   "industria-y-logistica": "object-[24%_center]",
-  "comercio-y-oficinas": "object-[28%_center]",
-  condominios: "object-[36%_center]",
+  "comercio-y-oficinas": "object-[24%_center]",
+  condominios: "object-[28%_center]",
 };
 
 /**
@@ -27,7 +26,9 @@ const homeCrop: Partial<Record<SectorSlug, string>> = {
  * aspecto por defecto, sin romperse.
  */
 const mobileCard = [
-  "max-sm:aspect-[3/4]",
+  // overflow-clip (no hidden): con aspect-ratio, un texto que no cabe en el 3:4
+  // hace crecer la tarjeta en vez de quedar cortado.
+  "max-sm:aspect-[3/4] max-sm:overflow-clip",
   "max-sm:[&>span:last-child]:gap-1.5 max-sm:[&>span:last-child]:p-3.5",
   "max-sm:[&>span:last-child>span:first-child]:hidden",
   "max-sm:[&_h3]:text-[17px] max-sm:[&_h3]:leading-[22px]",
@@ -82,7 +83,11 @@ export function ProtectSelector() {
               title={sector.selector.label}
               text={sector.hook.title}
               cta={selectorCopy.cta}
-              photo={{ src: sector.photo.src, position: homeCrop[sector.id] ?? sector.photo.position }}
+              photo={{
+                src: sector.photo.src,
+                position: homeCrop[sector.id] ?? sector.photo.position,
+                portrait: sector.photo.portrait,
+              }}
               Icon={sector.Icon}
               aspect="portrait"
               sizes="(min-width: 1344px) 304px, (min-width: 1024px) 23vw, 50vw"

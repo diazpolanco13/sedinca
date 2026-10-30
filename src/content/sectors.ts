@@ -76,10 +76,11 @@ export interface SectorContent {
   ubicacion: string;
   /**
    * Foto generada con IA, solo como ambientación (nunca «nuestro equipo»).
-   * `position`: clase `object-[…]` para recortes. `review`: nota para el modo
-   * revisión.
+   * `position`: clase `object-[…]` para recortes. `portrait`: recorte vertical
+   * 3:4 centrado en el oficial, para las tarjetas 2×2 del móvil. `review`:
+   * nota para el modo revisión.
    */
-  photo: { src: string; alt: string; position?: string; review?: string };
+  photo: { src: string; alt: string; position?: string; portrait?: string; review?: string };
 }
 
 const ubicacion = (slug: SectorSlug) => `sector-${slug}`;
@@ -197,10 +198,8 @@ const sectorData: Record<SectorSlug, Omit<SectorContent, "services">> = {
     ubicacion: ubicacion("petroleo-y-energia"),
     photo: {
       src: "/assets/sectores/petroleo-y-energia.webp",
+      portrait: "/assets/sectores/petroleo-y-energia-3x4.webp",
       alt: "Imagen ilustrativa: oficial de seguridad junto al cerco perimetral de un campo petrolero a orillas del Lago de Maracaibo, con balancines y torres al atardecer.",
-      position: "object-[85%_center]",
-      review:
-        "[REGENERAR FOTO: la espalda del uniforme muestra el texto inventado «SEDIN.CA». Mientras tanto, recortar hacia la derecha (object-[85%_center]) para no mostrarlo.]",
     },
   },
 
@@ -307,6 +306,7 @@ const sectorData: Record<SectorSlug, Omit<SectorContent, "services">> = {
     ubicacion: ubicacion("industria-y-logistica"),
     photo: {
       src: "/assets/sectores/industria-y-logistica.webp",
+      portrait: "/assets/sectores/industria-y-logistica-3x4.webp",
       alt: "Imagen ilustrativa: oficial de seguridad, con su planilla, atiende al conductor de un camión en la barrera de acceso de un centro de distribución.",
     },
   },
@@ -411,6 +411,7 @@ const sectorData: Record<SectorSlug, Omit<SectorContent, "services">> = {
     ubicacion: ubicacion("comercio-y-oficinas"),
     photo: {
       src: "/assets/sectores/comercio-y-oficinas.webp",
+      portrait: "/assets/sectores/comercio-y-oficinas-3x4.webp",
       alt: "Imagen ilustrativa: oficial de seguridad entrega una credencial de visitante a un ejecutivo en la recepción de una sede corporativa con vista al Lago de Maracaibo.",
     },
   },
@@ -505,6 +506,7 @@ const sectorData: Record<SectorSlug, Omit<SectorContent, "services">> = {
     ubicacion: ubicacion("condominios"),
     photo: {
       src: "/assets/sectores/condominios.webp",
+      portrait: "/assets/sectores/condominios-3x4.webp",
       alt: "Imagen ilustrativa: oficial de seguridad atiende con su radio a un conductor en la garita de acceso de un conjunto residencial al anochecer.",
     },
   },

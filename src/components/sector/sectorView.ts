@@ -13,24 +13,26 @@ import type { ServiceContent } from "@/content/services";
 
 /**
  * Recorte de las fotos de IA en formatos verticales o cuadrados (tarjetas y
- * bloque grande). Se usa `sector.photo.position` cuando existe (petróleo:
- * oculta el texto inventado «SEDIN.CA»); si no, este recorte:
+ * bloque grande). Se usa `sector.photo.position` cuando existe; si no, este
+ * recorte, para que el oficial quede dentro del encuadre:
+ * - petróleo: el oficial, de espaldas, está a la izquierda (≈12–44 % del ancho).
  * - industria: el oficial con la planilla está a la izquierda.
- * - comercio: evita la placa con un nombre en el pecho del oficial (la foto
- *   debe regenerarse, ver docs/fotos-ia-prompts.md).
- * - condominios: el oficial (al 30–37 % del ancho) queda hacia el centro.
- *
- * Ojo: ninguna foto de sector se muestra en formato ancho (más de 1:1), porque
- * la de petróleo enseñaría el texto inventado.
+ * - comercio: el oficial a la izquierda y la entrega de la credencial al centro.
+ * - condominios: el oficial (al 30–50 % del ancho) queda hacia el centro.
  */
 const photoCrop: Partial<Record<SectorSlug, string>> = {
+  "petroleo-y-energia": "object-[22%_center]",
   "industria-y-logistica": "object-[20%_center]",
-  "comercio-y-oficinas": "object-[55%_center]",
+  "comercio-y-oficinas": "object-[24%_center]",
   condominios: "object-[28%_center]",
 };
 
 export function sectorPhoto(sector: SectorContent) {
-  return { src: sector.photo.src, position: sector.photo.position ?? photoCrop[sector.id] };
+  return {
+    src: sector.photo.src,
+    position: sector.photo.position ?? photoCrop[sector.id],
+    portrait: sector.photo.portrait,
+  };
 }
 
 /**
@@ -48,7 +50,9 @@ export function sectorThumb(slug: SectorSlug) {
  * móvil la tarjeta vuelve a su aspecto por defecto, sin romperse.
  */
 export const photoCardMobile = [
-  "max-sm:aspect-[3/4]",
+  // overflow-clip (no hidden): con aspect-ratio, un texto que no cabe en el 3:4
+  // hace crecer la tarjeta en vez de quedar cortado.
+  "max-sm:aspect-[3/4] max-sm:overflow-clip",
   "max-sm:[&>span:last-child]:gap-1.5 max-sm:[&>span:last-child]:p-3.5",
   "max-sm:[&>span:last-child>span:first-child]:hidden",
   "max-sm:[&_h3]:text-[17px] max-sm:[&_h3]:leading-[22px]",
