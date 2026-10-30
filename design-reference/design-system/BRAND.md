@@ -3,6 +3,7 @@ SEDIN — Seguridad y Defensa Integral, Compañía Anónima — presta servicios
 ## Contenido y voz
 
 - Escribe en español formal, en tercera persona e impersonal ("La empresa tendrá por objeto…", "Se entiende por…"). Nada de tuteo comercial, exclamaciones ni emoji.
+- En la web: **usted** en llamadas a la acción y trato directo ("Cuéntenos qué necesita proteger"); impersonal en descripciones ("Cada puesto cuenta con libro de novedades"); "nosotros" para la cercanía ("Visitamos su instalación"). Sin tuteo, tampoco en Empleo.
 - Usa la razón social completa la primera vez: **Seguridad y Defensa Integral, Compañía Anónima (SEDIN, C.A.)**; después, **SEDIN**. El logotipo nuevo escribe "SEDIN, C.A".
 - Vocabulario propio: *oficial de seguridad*, *servicio*, *puesto*, *novedades*, *libro de novedades*, *supervisor*, *Jefe de Operaciones*, *STS* (Sistemas Tecnológicos de Seguridad), *vigilancia fija / móvil*.
 - Documentos del Sistema de Gestión de Calidad (ISO 9001): código `SED-<proceso>-<tipo>-<nº>` (p. ej. `SED-GC-PR-01`), encabezado con *Procedimiento Nº*, *Revisión*, *Página X de Y*; secciones en MAYÚSCULAS (PROPÓSITO, ALCANCE, DEFINICIONES / ABREVIATURAS, PROCEDIMIENTO, REFERENCIAS, ANEXO, CONTROL DE REVISIONES); artículos numerados ("Artículo 1."). Componlos en `doc-body` (Arial 12 pt, justificado) y `doc-header` (Arial 10 pt).
@@ -31,6 +32,7 @@ La paleta tiene dos capas. **Usa siempre los tokens semánticos** en interfaces;
 - Todas las parejas de texto cumplen 4.5:1 y los bordes de control y el foco 3:1, en ambos temas.
 - Acción primaria: `gradient-action` con `on-brand`. `gradient-shield` (con su tramo cian) es para superficies de marca y portadas, no detrás de texto pequeño.
 - Degradados permitidos: `gradient-shield`, `gradient-action`, `gradient-atmosphere` / `gradient-atmosphere-dark`, `gradient-rim`, `gradient-accent-line`. No inventes otros.
+- **Excepción documentada: WhatsApp.** El glifo de WhatsApp usa su verde oficial (`--whatsapp` #25D366 sobre botones de marca y fondos oscuros; `--whatsapp-deep` #128C7E sobre superficies claras). Solo el glifo: el botón sigue siendo de marca (`gradient-action` o secundario) con su texto en `on-brand`/`ink`, y el verde nunca se usa para texto, fondos ni otros elementos.
 - Gráficos: series en `azure-600`, `cyan-600`, `azure-900`, `titanium-500` en ese orden (todas ≥3:1 sobre `surface` claro); en oscuro, `azure-400`, `cyan-400`, `titanium-300`, `azure-200`.
 
 ## Tipografía

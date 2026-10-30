@@ -8,6 +8,7 @@ import type {
   TextareaHTMLAttributes,
 } from "react";
 import { useState } from "react";
+import { buttonClass } from "@/components/ui/links";
 import { cn } from "@/lib/cn";
 
 /*
@@ -82,6 +83,11 @@ export function Radio({ label, className, ...props }: ChoiceProps) {
   );
 }
 
+/**
+ * Botón de formulario. Usa las clases unificadas de links.ts (`buttonClass`)
+ * con la medida compacta de los formularios (44px). Para botones fuera de
+ * formularios, use Button/ButtonLink de ui/Button.tsx.
+ */
 export function Button({
   variant = "primary",
   className,
@@ -91,15 +97,7 @@ export function Button({
   return (
     <button
       type={type}
-      className={cn(
-        "h-11 cursor-pointer rounded-(--radius) border-0 px-6 font-display text-sm leading-5 font-semibold tracking-[0.04em] transition-[filter,box-shadow,background-color,border-color,transform] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-45",
-        variant === "primary" &&
-          "bg-[image:var(--gradient-action)] font-bold text-on-brand shadow-inset-highlight hover:brightness-[1.08] hover:shadow-[var(--inset-highlight),var(--glow-cyan)]",
-        variant === "secondary" &&
-          "border-[1.5px] border-line bg-surface text-ink hover:border-brand hover:bg-surface-brand",
-        variant === "ghost" && "bg-transparent text-ink-brand hover:bg-[var(--ghost-hover)]",
-        className,
-      )}
+      className={buttonClass({ variant, size: "form", className })}
       {...props}
     />
   );

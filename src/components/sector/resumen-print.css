@@ -1,0 +1,68 @@
+/*
+ * Resumen para la asamblea (/sectores/condominios/resumen): impresión limpia.
+ *
+ * Al imprimir solo queda la hoja `.sd-resumen`: se ocultan el encabezado, la
+ * portada, el cierre, el pie, los botones flotantes y cualquier otra pieza
+ * (todo lo que no es la hoja ni la contiene), sin depender de su marcado.
+ * Las reglas solo se aplican a la página que contiene `.sd-resumen`.
+ */
+@media print {
+  @page {
+    margin: 14mm 14mm 16mm;
+  }
+
+  html,
+  body {
+    background: var(--white) !important;
+  }
+
+  /* Todo lo que no es la hoja, ni la contiene, ni está dentro de ella. */
+  body:has(.sd-resumen) :not(:has(.sd-resumen)):not(.sd-resumen):not(.sd-resumen *) {
+    display: none !important;
+  }
+
+  /* Contenedores de la hoja (main, sección, contenedor): sin fondo ni márgenes. */
+  body:has(.sd-resumen) :has(.sd-resumen) {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    border: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+  }
+
+  .sd-resumen {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    color: var(--titanium-900);
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  .sd-resumen * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .sd-resumen a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  .sd-resumen h2,
+  .sd-resumen h3 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .sd-resumen [data-print-block] {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

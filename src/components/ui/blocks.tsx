@@ -1,33 +1,14 @@
-import type { ComponentType, ReactNode } from "react";
+import type { ComponentType } from "react";
 import { cn } from "@/lib/cn";
-import { Eyebrow, SectionTitle } from "@/components/ui/SectionHeading";
 
 type IconType = ComponentType<{ size?: number; className?: string }>;
 
-/** Etiqueta + titular de sección (máx. 640px), como en los diseños. */
-export function SectionHeader({
-  eyebrow,
-  title,
-  id,
-  children,
-}: {
-  eyebrow: string;
-  title: ReactNode;
-  /** id del titular, para `aria-labelledby` de la sección. */
-  id?: string;
-  /** Entradilla opcional bajo el titular. */
-  children?: ReactNode;
-}) {
-  return (
-    <div className="flex max-w-[640px] flex-col gap-3">
-      <Eyebrow>{eyebrow}</Eyebrow>
-      <SectionTitle>
-        <span id={id}>{title}</span>
-      </SectionTitle>
-      {children && <p className="m-0 text-[17px] leading-[26px] text-ink-muted">{children}</p>}
-    </div>
-  );
-}
+/**
+ * Etiqueta + titular de sección. Ahora es el SectionHeader de Section.tsx
+ * (misma API: `eyebrow`, `title`, `id`, `children` como entradilla; más
+ * `lead`, `align`, `size`, `actions`).
+ */
+export { SectionHeader } from "@/components/ui/Section";
 
 /** Banda blanca de 4 columnas con icono, título y texto (Beneficios). */
 export function FeatureBand({

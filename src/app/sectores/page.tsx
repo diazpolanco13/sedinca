@@ -1,104 +1,137 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+import { ArrowRightIcon, BookIcon, ShieldCheckIcon, ShieldIcon, UserCheckIcon } from "@/components/icons";
 import { SitePage } from "@/components/layout/SitePage";
-import { SectionHeader } from "@/components/ui/blocks";
-import { Chip } from "@/components/ui/Chip";
+import { SectorPicker } from "@/components/sector/SectorPicker";
+import { photoCardMobile, sectorPhoto } from "@/components/sector/sectorView";
+import { ServiceHero } from "@/components/service/ServiceHero";
+import { ActionLink } from "@/components/ui/ActionLink";
 import { CtaBand } from "@/components/ui/CtaBand";
-import { PageHero } from "@/components/ui/PageHero";
-import { cn } from "@/lib/cn";
+import { Pend, SourceNote } from "@/components/ui/Pending";
+import { PhotoCard } from "@/components/ui/PhotoCard";
+import { Reveal } from "@/components/ui/Reveal";
+import { Accent, Section, SectionHeader } from "@/components/ui/Section";
+import { ArrowLink } from "@/components/ui/SectionHeading";
+import { absoluteUrl, cotizarHref, ctaLabels, routes, sectorHref } from "@/config/site";
+import { ningunPuestoSolo, noArmado, reporte, supervision, unarmedStatement } from "@/content/answers";
 import { sectorsContent } from "@/content/sectors";
-import { getService } from "@/content/services";
-import { routes } from "@/config/site";
+import { umami } from "@/lib/analytics";
 
 export const metadata: Metadata = {
-  title: "Sectores",
+  title: "Vigilancia privada por sector en Maracaibo y el Zulia",
   description:
-    "Seguridad privada para la industria petrolera, empresas e industria, corporaciones y conjuntos residenciales y condominios.",
+    "Vigilancia privada no armada para instalaciones petroleras, plantas y almacenes, comercios y oficinas, y condominios de Maracaibo y el Zulia.",
+  alternates: { canonical: absoluteUrl(routes.sectors) },
 };
 
+/** Lo que no cambia de un sector a otro (textos de answers.ts; fuentes solo en revisión). */
+const constants = [
+  {
+    Icon: ShieldCheckIcon,
+    title: ningunPuestoSolo.title.replace(/\.$/, ""),
+    text: ningunPuestoSolo.body[0],
+    source: "Arts. 20 y 21",
+  },
+  { Icon: BookIcon, title: "Libro de novedades en cada puesto", text: reporte.body[0], source: "Art. 32" },
+  { Icon: UserCheckIcon, title: supervision.title, text: supervision.body[0], source: "Art. 19" },
+  { Icon: ShieldIcon, title: noArmado.eyebrow, text: unarmedStatement, source: "Art. 4" },
+];
+
+/**
+ * /sectores: índice por instalación. La portada lleva el selector de vidrio
+ * con los 4 sectores (desde 1024px; en móvil, las tarjetas con foto que siguen
+ * hacen de selector, sin elegir dos veces lo mismo); después, las tarjetas y
+ * lo que no cambia de un sector a otro. Selector, tarjetas, menú y ruta usan
+ * el mismo nombre de sector. Ritmo: portada → light → sunken → dark (cierre).
+ */
 export default function SectorsPage() {
   return (
     <SitePage>
-      <PageHero
+      <ServiceHero
         crumbs={[{ label: "Sectores" }]}
-        eyebrow="Sectores"
-        title={{ text: "Servicios especializados para cada", highlight: "entorno" }}
-        lead="Cada instalación tiene riesgos distintos. SEDIN adapta la vigilancia, el control de acceso y los sistemas electrónicos a la operación de cada sector."
-        secondary={{ label: "Ver sectores", href: "#sectores" }}
-      />
-
-      <section id="sectores" aria-labelledby="sectores-titulo" className="scroll-mt-4">
-        <div className="mx-auto flex max-w-[1344px] flex-col gap-12 px-4 py-16 sm:px-8 lg:gap-16 lg:py-[88px]">
-          <SectionHeader
-            eyebrow="Dónde trabajamos"
-            title="Industria, empresas, corporaciones y residencias"
-            id="sectores-titulo"
+        path={routes.sectors}
+        eyebrow="Soluciones por instalación"
+        title={{ text: "Seguridad privada según su", highlight: "instalación" }}
+        lead="Cada instalación tiene riesgos distintos. Elija la suya y vea el esquema que recomendamos, las respuestas a lo que más se pregunta antes de contratar y cómo empezar."
+        aside={<SectorPicker />}
+      >
+        <Link
+          href={cotizarHref()}
+          prefetch={false}
+          {...umami("cta-cotizar", { ubicacion: "portada" })}
+          className="group inline-flex items-center gap-2 self-start pt-1 font-display text-base font-semibold text-cyan-200 no-underline hover:text-white hover:underline"
+        >
+          ¿No lo tiene claro? {ctaLabels.diagnostico} en 4 preguntas
+          <ArrowRightIcon
+            size={18}
+            className="flex-none transition-transform group-hover:translate-x-1 motion-reduce:transition-none"
           />
-          {sectorsContent.map((sector, i) => (
-            <article
-              key={sector.id}
-              id={sector.id}
-              aria-labelledby={`${sector.id}-titulo`}
-              className={cn(
-                "flex scroll-mt-4 flex-wrap items-center gap-8 lg:gap-12",
-                i % 2 === 1 && "lg:flex-row-reverse",
-              )}
-            >
-              <div className="relative h-[240px] min-w-0 flex-[1_1_420px] overflow-hidden rounded-xl sm:h-[320px]">
-                <Image
-                  src={sector.photo.src}
-                  alt={sector.photo.alt}
-                  fill
-                  sizes="(min-width: 1024px) 616px, 100vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex min-w-0 flex-[1_1_420px] flex-col gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-md bg-surface-brand text-ink-brand">
-                  <sector.Icon size={26} />
-                </div>
-                <h3
-                  id={`${sector.id}-titulo`}
-                  className="m-0 font-display text-[28px] leading-9 font-bold tracking-[-0.01em]"
-                >
-                  {sector.title}
-                </h3>
-                <p className="m-0 text-[17px] leading-[26px] text-ink-muted">{sector.text}</p>
-                <ul className="m-0 flex list-none flex-col gap-2 p-0 text-[15px] leading-[22px]">
-                  {sector.focus.map((f) => (
-                    <li key={f} className="flex items-center gap-3">
-                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-col gap-2 pt-2">
-                  <span className="field-label">Servicios recomendados</span>
-                  <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
-                    {sector.services.map((slug) => (
-                      <li key={slug}>
-                        <Link
-                          href={`${routes.services}/${slug}`}
-                          className="rounded-full no-underline transition-opacity hover:opacity-80"
-                        >
-                          <Chip>{getService(slug)!.name}</Chip>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+        </Link>
+      </ServiceHero>
 
-      <CtaBand label="Cotización por sector" eyebrow="Cotización por sector">
-        <p className="m-0 max-w-[560px] text-[17px] leading-[26px] text-ink-muted">
-          Indica tu sector en el formulario y un asesor de SEDIN coordinará la inspección del sitio.
+      <Section tone="light" id="sectores" labelledBy="sectores-titulo">
+        <SectionHeader
+          id="sectores-titulo"
+          eyebrow="Los sectores"
+          title={
+            <>
+              Cuatro puertas de entrada, <Accent>un mismo método</Accent>
+            </>
+          }
+          lead="Cada página reúne los riesgos típicos, el esquema que recomendamos y las respuestas a lo que se pregunta antes de contratar."
+        />
+        <ul className="mt-8 grid list-none grid-cols-2 gap-3 p-0 sm:mt-12 sm:gap-6 lg:mt-16 lg:grid-cols-4">
+          {sectorsContent.map((sector) => (
+            <Reveal as="li" key={sector.id}>
+              <PhotoCard
+                href={sectorHref(sector.id)}
+                title={sector.title}
+                text={sector.hook.title}
+                photo={sectorPhoto(sector)}
+                Icon={sector.Icon}
+                cta="Ver el sector"
+                aspect="portrait"
+                className={photoCardMobile}
+                sizes="(min-width: 1344px) 310px, (min-width: 1024px) 25vw, 50vw"
+              />
+            </Reveal>
+          ))}
+        </ul>
+        <p className="m-0 mt-10 flex flex-wrap items-center gap-x-2 gap-y-1 text-base leading-6 text-ink-muted">
+          ¿No lo tiene claro?
+          <ActionLink
+            variant="inline"
+            action={{
+              kind: "link",
+              label: ctaLabels.diagnostico,
+              href: cotizarHref(),
+              event: "cta-cotizar",
+            }}
+          />
         </p>
-      </CtaBand>
+      </Section>
+
+      <Section tone="sunken" space="tight" id="en-todos" labelledBy="en-todos-titulo">
+        <SectionHeader
+          id="en-todos-titulo"
+          eyebrow="En cualquier instalación"
+          title="Lo que no cambia de un sector a otro"
+          size="md"
+          actions={<ArrowLink href={routes.comoTrabajamos}>Ver cómo trabajamos</ArrowLink>}
+        />
+        <ul className="mt-10 grid list-none gap-8 p-0 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+          {constants.map(({ Icon, title, text, source }) => (
+            <Reveal as="li" key={title} className="flex flex-col gap-3 border-t-2 border-accent pt-6">
+              <Icon size={28} className="text-ink-brand" />
+              <h3 className="m-0 font-display text-lg leading-6 font-bold tracking-[-0.01em] text-ink">{title}</h3>
+              <Pend as="p" className="m-0 text-[15px] leading-[22px] text-ink-muted" text={text} />
+              <SourceNote source={source} />
+            </Reveal>
+          ))}
+        </ul>
+      </Section>
+
+      <CtaBand />
     </SitePage>
   );
 }

@@ -223,3 +223,189 @@ export const HeadsetIcon = (p: IconProps) => (
     <path d="M19 20a3 3 0 01-3 2h-3" />
   </Icon>
 );
+
+/* ---------------------------------------------------------------------------
+ * Fase 1: iconos añadidos (mismo estilo: trazo 1.75, 24×24, currentColor).
+ * ------------------------------------------------------------------------ */
+
+export const ChevronDownIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M6 9l6 6 6-6" />
+  </Icon>
+);
+
+export const ChevronRightIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M9 6l6 6-6 6" />
+  </Icon>
+);
+
+export const ArrowRightIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </Icon>
+);
+
+export const ArrowUpRightIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M7 17L17 7M8 7h9v9" />
+  </Icon>
+);
+
+export const CheckIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 12.5l4.5 4.5L19 7.5" />
+  </Icon>
+);
+
+export const CheckCircleIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M8 12.5l2.7 2.7L16 9.8" />
+  </Icon>
+);
+
+export const QuoteIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M10 11H5V6h5v5zm0 0c0 4-2 6.5-5 7.5" />
+    <path d="M20 11h-5V6h5v5zm0 0c0 4-2 6.5-5 7.5" />
+  </Icon>
+);
+
+/** Alias con el nombre de la guía. */
+export const MapPinIcon = PinIcon;
+export const UsersIcon = TeamIcon;
+
+export const FileTextIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8l-5-5z" />
+    <path d="M14 3v5h5M9 13h6M9 17h6M9 9h1" />
+  </Icon>
+);
+
+/** Libro de novedades. */
+export const BookIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M5 5a2 2 0 012-2h12v15H7a2 2 0 00-2 2V5z" />
+    <path d="M5 20a2 2 0 002 1h12v-3M9 7h6M9 11h4" />
+  </Icon>
+);
+
+/** Radio transmisor. */
+export const RadioIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="7" y="7" width="10" height="14" rx="2" />
+    <path d="M9 7V2.5M10 11h4M10 14h4M10 17h4" />
+  </Icon>
+);
+
+export const UserCheckIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="9" cy="8" r="3.5" />
+    <path d="M3 20v-1a5 5 0 015-5h2a5 5 0 015 5v1M16 11l2 2 4-4" />
+  </Icon>
+);
+
+export const CalendarIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="3" y="5" width="18" height="16" rx="2" />
+    <path d="M3 10h18M8 3v4M16 3v4" />
+  </Icon>
+);
+
+export const CopyIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <rect x="9" y="9" width="11" height="11" rx="2" />
+    <path d="M5 15V6a2 2 0 012-2h9" />
+  </Icon>
+);
+
+export const ShareIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="18" cy="5" r="2.5" />
+    <circle cx="6" cy="12" r="2.5" />
+    <circle cx="18" cy="19" r="2.5" />
+    <path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4" />
+  </Icon>
+);
+
+export const PrinterIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M7 9V3h10v6" />
+    <path d="M7 17H5a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-2" />
+    <rect x="7" y="14" width="10" height="7" />
+  </Icon>
+);
+
+export const ExternalLinkIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M14 4h6v6M20 4l-9 9" />
+    <path d="M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5" />
+  </Icon>
+);
+
+export const InfoIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 11v5M12 8h.01" />
+  </Icon>
+);
+
+export const AlertIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 4l9 16H3l9-16z" />
+    <path d="M12 10v4M12 17h.01" />
+  </Icon>
+);
+
+/** Torre de perforación (petróleo y energía). */
+export const OilRigIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M12 2L6.5 21M12 2l5.5 19M8.7 13h6.6M7.6 17h8.8M10 8h4M4 21h16" />
+  </Icon>
+);
+
+export const WarehouseIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M3 21V9l9-5 9 5v12" />
+    <path d="M7 21v-8h10v8M7 17h10" />
+  </Icon>
+);
+
+export const StoreIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M4 10v10h16V10" />
+    <path d="M3 10l2-6h14l2 6H3z" />
+    <path d="M9.5 20v-5h5v5" />
+  </Icon>
+);
+
+/**
+ * Glifo de WhatsApp (silueta oficial simplificada, de una sola tinta).
+ * `tone="brand"` lo pinta con el verde de WhatsApp (excepción de marca);
+ * `tone="deep"` con el verde oscuro, para superficies claras; por defecto
+ * hereda `currentColor`. Es decorativo: el enlace lleva siempre el texto.
+ */
+export function WhatsAppIcon({
+  size = 24,
+  tone = "current",
+  style,
+  ...props
+}: IconProps & { tone?: "current" | "brand" | "deep" }) {
+  const color =
+    tone === "brand" ? "var(--whatsapp)" : tone === "deep" ? "var(--whatsapp-deep)" : "currentColor";
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={color}
+      aria-hidden="true"
+      focusable="false"
+      style={{ flex: "none", ...style }}
+      {...props}
+    >
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  );
+}

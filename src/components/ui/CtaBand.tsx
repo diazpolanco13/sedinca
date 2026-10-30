@@ -1,36 +1,136 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
-import { primaryLink } from "@/components/ui/links";
-import { Eyebrow } from "@/components/ui/SectionHeading";
-import { routes } from "@/config/site";
+import { ClockIcon, PinIcon } from "@/components/icons";
+import { CONTACT_ZONE_CLASS } from "@/components/layout/contactZone";
+import { ActionGroup } from "@/components/ui/ActionLink";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { Section, SectionHeader } from "@/components/ui/Section";
+import {
+  audienceActions,
+  phoneHref,
+  site,
+  waMessages,
+  type Audience,
+  type CtaAction,
+  type SectorSlug,
+} from "@/config/site";
+import type { ServiceContent } from "@/content/services";
+import { umami } from "@/lib/analytics";
 
-/** Banda final de página (fondo hundido) con contenido a la izquierda y CTA a la derecha. */
+/**
+ * Cierre persuasivo de página (sección oscura): titular, entradilla, botones
+ * según la audiencia y, a la derecha (solo desde 1024px), la tarjeta de
+ * contacto 24/7: teléfono con «Respuesta inmediata, en tiempo real», oficina
+ * y «Cómo llegar». WhatsApp no se repite en la tarjeta: ya es el botón
+ * principal. En móvil la tarjeta no se pinta: el pie, justo debajo, y la
+ * barra de contacto ya llevan teléfono, WhatsApp y dirección.
+ *
+ * Mientras el cierre está en pantalla, el botón flotante de WhatsApp se
+ * retira (clase `CONTACT_ZONE_CLASS`).
+ *
+ *   <CtaBand audience="residencial" sector="condominios" whatsappMessage={sector.whatsapp} ubicacion="cierre" />
+ *   <CtaBand audience="empresa" actions={sector.cta} />
+ *
+ * Compatibilidad: acepta las props anteriores (`label`, `eyebrow`,
+ * `children`, `cta`) para que las páginas antiguas sigan compilando.
+ */
 export function CtaBand({
-  label,
-  eyebrow,
+  id = "cierre",
+  eyebrow = "Hablemos",
+  title = "Cuéntenos qué necesita proteger",
+  lead = "Un asesor le responde y coordina con usted la inspección del sitio. Sin compromiso.",
+  audience = "general",
+  whatsappMessage,
+  ubicacion = "cierre",
+  sector,
+  servicio,
+  actions,
+  footnote,
+  contactCard = true,
   children,
-  cta = { label: "Solicitar cotización", href: routes.contact },
+  label,
+  cta,
 }: {
-  /** Nombre accesible de la sección. */
-  label: string;
-  eyebrow: string;
-  children: ReactNode;
+  id?: string;
+  eyebrow?: string;
+  title?: ReactNode;
+  lead?: ReactNode;
+  audience?: Audience | "general";
+  whatsappMessage?: string;
+  /** Ubicación para Umami (por defecto `cierre`). */
+  ubicacion?: string;
+  sector?: SectorSlug;
+  servicio?: ServiceContent["slug"];
+  /** Sustituye a los botones calculados por audiencia. */
+  actions?: readonly CtaAction[];
+  /** Línea final, p. ej. «¿Busca empleo como oficial de seguridad? Postule aquí →». */
+  footnote?: ReactNode;
+  /** Tarjeta de contacto 24/7 a la derecha (solo desde 1024px). */
+  contactCard?: boolean;
+  children?: ReactNode;
+  /** @deprecated Nombre accesible (API anterior). */
+  label?: string;
+  /** @deprecated Enlace extra (API anterior); se añade como enlace de texto. */
   cta?: { label: string; href: string };
 }) {
+  const message =
+    whatsappMessage ??
+    (sector ? waMessages.sector[sector] : servicio ? waMessages.servicio[servicio] : waMessages.general);
+  const computed = actions ?? audienceActions(audience, { ubicacion, whatsapp: message, sector, servicio });
+  const all: CtaAction[] = cta ? [...computed, { kind: "link", label: cta.label, href: cta.href }] : [...computed];
+  const titleId = `${id}-titulo`;
+  const tel = phoneHref();
+
   return (
-    <section aria-label={label} className="bg-surface-sunken">
-      <div className="mx-auto flex max-w-[1344px] flex-wrap items-center justify-between gap-8 px-4 py-14 sm:px-8 lg:py-[72px]">
-        <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-4">
-          <Eyebrow>{eyebrow}</Eyebrow>
+    <Section tone="dark" id={id} labelledBy={titleId} label={label} className={CONTACT_ZONE_CLASS}>
+      <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="flex flex-col gap-8 lg:col-span-7">
+          <SectionHeader eyebrow={eyebrow} title={title} lead={lead} id={titleId} />
           {children}
+          <ActionGroup actions={all} tone="dark" size="lg" />
+          {footnote && <p className="m-0 text-[15px] leading-6 text-ink-muted">{footnote}</p>}
         </div>
-        <Link
-          href={cta.href}
-          className={`${primaryLink} h-[52px] px-8 text-base shadow-[var(--inset-highlight),var(--glow-cyan)]`}
-        >
-          {cta.label}
-        </Link>
+
+        {contactCard && (
+          <GlassCard tone="dark" level={2} accent className="hidden p-8 lg:col-span-5 lg:block">
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-3 text-ink-muted">
+                <ClockIcon size={20} className="text-cyan-300" />
+                <span className="eyebrow">Atención {site.hours}</span>
+              </div>
+              <div className="flex flex-col gap-3">
+                {tel && (
+                  <a
+                    href={tel}
+                    {...umami("telefono", { ubicacion })}
+                    className="font-display text-[clamp(26px,2.6vw,34px)] leading-tight font-bold tracking-[-0.01em] text-ink no-underline hover:text-ink hover:underline"
+                  >
+                    {site.phone}
+                  </a>
+                )}
+                <p className="m-0 text-[15px] leading-6 text-ink-muted">
+                  {site.responseTime}, por WhatsApp y por teléfono.
+                </p>
+              </div>
+              <div className="flex gap-3 border-t border-line pt-5 text-[15px] leading-6 text-ink-muted">
+                <PinIcon size={20} className="mt-0.5 flex-none text-cyan-300" />
+                <span>
+                  {site.address}, {site.city}.{" "}
+                  <a
+                    href={site.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    {...umami("como-llegar", { ubicacion })}
+                    className="font-semibold whitespace-nowrap text-cyan-200 underline underline-offset-[3px]"
+                  >
+                    Cómo llegar
+                    <span className="sr-only"> (abre Google Maps)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </GlassCard>
+        )}
       </div>
-    </section>
+    </Section>
   );
 }

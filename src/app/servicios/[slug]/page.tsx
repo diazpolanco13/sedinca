@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SitePage } from "@/components/layout/SitePage";
 import { ServiceTemplate } from "@/components/service/ServiceTemplate";
+import { absoluteUrl, serviceHref } from "@/config/site";
 import { getService, servicesContent } from "@/content/services";
 
 export const dynamicParams = false;
@@ -16,8 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = getService((await params).slug);
   if (!service) return {};
   return {
-    title: service.name,
-    description: service.metaDescription,
+    title: service.meta.title,
+    description: service.meta.description,
+    alternates: { canonical: absoluteUrl(serviceHref(service.slug)) },
   };
 }
 

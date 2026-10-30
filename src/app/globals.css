@@ -36,7 +36,12 @@
   --color-brand-deep: var(--brand-deep);
   --color-on-brand: var(--on-brand);
   --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-accent-subtle: var(--accent-subtle);
   --color-focus-ring: var(--focus-ring);
+  /* Excepción de marca documentada: solo para el glifo de WhatsApp. */
+  --color-whatsapp: var(--whatsapp);
+  --color-whatsapp-deep: var(--whatsapp-deep);
   --color-success: var(--success);
   --color-success-subtle: var(--success-subtle);
   --color-ink-success: var(--ink-success);
@@ -68,6 +73,8 @@
   --color-cyan-500: var(--cyan-500);
   --color-cyan-600: var(--cyan-600);
   --color-cyan-700: var(--cyan-700);
+  --color-cyan-800: var(--cyan-800);
+  --color-cyan-900: var(--cyan-900);
   --color-titanium-50: var(--titanium-50);
   --color-titanium-100: var(--titanium-100);
   --color-titanium-200: var(--titanium-200);
@@ -107,6 +114,14 @@
   html {
     line-height: normal;
     -webkit-text-size-adjust: 100%;
+  }
+  /* Al mover el foco con Tab, nada queda bajo la barra de contacto fija de
+     móvil y tableta (WCAG 2.4.11). Arriba no se añade: las anclas ya
+     llevan su `scroll-mt-*` y los dos márgenes se sumarían. */
+  @media (max-width: 1023.98px) {
+    html {
+      scroll-padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+    }
   }
   body {
     margin: 0;
@@ -172,15 +187,285 @@
   }
 }
 
-/* Velos de la portada: oscurecen la izquierda y el borde superior. */
+/* Velos de la portada: oscurecen la izquierda y el borde superior. El
+   lateral llega hasta el 74 % para que el final de los titulares largos (y
+   su palabra resaltada) no quede sobre el resplandor del atardecer sin velo;
+   el superior protege los enlaces del encabezado transparente. */
 .hero-scrim {
   background-image:
-    linear-gradient(180deg, rgba(4, 13, 31, 0.55) 0%, rgba(4, 13, 31, 0) 22%),
-    linear-gradient(90deg, rgba(4, 13, 31, 0.78) 0%, rgba(4, 13, 31, 0.5) 38%, rgba(4, 13, 31, 0) 64%);
+    linear-gradient(180deg, rgba(4, 13, 31, 0.65) 0%, rgba(4, 13, 31, 0) 28%),
+    linear-gradient(
+      90deg,
+      rgba(4, 13, 31, 0.85) 0%,
+      rgba(4, 13, 31, 0.68) 40%,
+      rgba(4, 13, 31, 0.3) 58%,
+      rgba(4, 13, 31, 0) 74%
+    );
 }
 @media (max-width: 900px) {
   .hero-scrim {
     background-image: linear-gradient(180deg, rgba(4, 13, 31, 0.7) 0%, rgba(4, 13, 31, 0.6) 100%);
+  }
+}
+
+/* ==========================================================================
+ * Fase 1 · utilidades de la base
+ * Reglas: solo se animan posición y transparencia; con «reducir movimiento»
+ * todo queda quieto; sin JavaScript o sin soporte, todo se ve igual (las
+ * animaciones nunca dejan contenido oculto si no corren).
+ * ========================================================================== */
+
+@layer components {
+  /* Sección oscura: azul medianoche, trama de puntos que se desvanece y luz
+     cian. La pone <Section tone="dark">, que además activa data-theme="dark"
+     (los tokens ink, line, surface… pasan a sus valores del tema oscuro). */
+  .section-dark {
+    position: relative;
+    isolation: isolate;
+    background-color: var(--azure-950);
+    color: var(--ink);
+    --focus-ring: var(--cyan-400);
+  }
+  .section-dark::before,
+  .section-dark::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .section-dark::before {
+    background-image: radial-gradient(rgba(144, 224, 239, 0.16) 1.5px, transparent 1.5px);
+    background-size: 16px 16px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 65% at 100% 0%, black 0%, transparent 72%);
+    mask-image: radial-gradient(ellipse 70% 65% at 100% 0%, black 0%, transparent 72%);
+  }
+  .section-dark::after {
+    background-image:
+      radial-gradient(55% 45% at 92% 0%, rgba(0, 180, 216, 0.2) 0%, transparent 70%),
+      radial-gradient(45% 55% at 0% 100%, rgba(0, 114, 206, 0.26) 0%, transparent 70%);
+  }
+
+  /* Tarjeta interactiva: se eleva y toma el brillo cian al pasar el cursor
+     o al recibir el foco. */
+  .card-interactive {
+    transition:
+      transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+      box-shadow 0.3s ease,
+      border-color 0.3s ease;
+  }
+  .card-interactive:focus-within {
+    border-color: var(--line-cyan);
+    box-shadow: var(--elevation-2), var(--glow-cyan);
+  }
+  @media (hover: hover) {
+    .card-interactive:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-cyan);
+      box-shadow: var(--elevation-2), var(--glow-cyan);
+    }
+  }
+
+  /* Pendientes (solo visibles con NEXT_PUBLIC_SHOW_PENDING=1). */
+  .pending-mark {
+    color: inherit;
+    background: var(--chip-operational-bg);
+    outline: 1.5px dashed var(--accent);
+    outline-offset: 1px;
+    border-radius: 3px;
+    padding: 0 0.2em;
+  }
+  .pending-sentence {
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+  }
+  .pending-block {
+    position: relative;
+    border: 2px dashed var(--accent);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem 1rem 1rem;
+  }
+  .pending-label {
+    position: absolute;
+    top: 0.625rem;
+    left: 1rem;
+    font-family: var(--font-display);
+    font-size: 11px;
+    line-height: 16px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-accent);
+  }
+
+  /* Línea de tiempo vertical: la línea de fondo es `line`; encima, el relleno
+     cian. Sin soporte de animaciones por desplazamiento (o con «reducir
+     movimiento») el relleno se ve completo y quieto. */
+  .timeline {
+    position: relative;
+    display: grid;
+    gap: 2.5rem;
+    margin: 0;
+    padding: 0 0 0 3.5rem;
+    list-style: none;
+    view-timeline-name: --sd-timeline;
+  }
+  .timeline::before,
+  .timeline::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 15px;
+    top: 1rem;
+    bottom: 1rem;
+    width: 2px;
+    border-radius: 1px;
+  }
+  .timeline::before {
+    background: var(--line);
+  }
+  .timeline::after {
+    background: linear-gradient(180deg, var(--cyan-400) 0%, var(--azure-600) 100%);
+    transform-origin: top;
+  }
+  .timeline-item {
+    position: relative;
+    min-width: 0;
+  }
+  .timeline-dot {
+    position: absolute;
+    z-index: 1;
+    top: -3px;
+    left: -3.5rem;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--accent);
+    border-radius: 9999px;
+    background: var(--surface);
+    color: var(--ink-brand);
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: var(--glow-cyan);
+  }
+  /* Variante por pasos: horizontal desde 1024px (vertical en móvil). */
+  @media (min-width: 1024px) {
+    .timeline--h {
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(0, 1fr);
+      gap: 2rem;
+      padding: 3.5rem 0 0;
+    }
+    .timeline--h::before,
+    .timeline--h::after {
+      top: 15px;
+      bottom: auto;
+      left: 1rem;
+      right: 1rem;
+      width: auto;
+      height: 2px;
+    }
+    .timeline--h::after {
+      background: var(--gradient-accent-line);
+      transform-origin: left;
+    }
+    .timeline--h .timeline-dot {
+      top: -3.5rem;
+      left: 0;
+    }
+  }
+}
+
+/* Aparición al desplazar y relleno de la línea de tiempo: SOLO con CSS y
+   solo donde el navegador lo soporta y el usuario no pide reducir el
+   movimiento. Fuera de eso no hay animación y todo queda visible. */
+@keyframes sd-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+@keyframes sd-reveal-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes sd-fill-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes sd-fill-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes sd-dot {
+  from {
+    border-color: var(--line-strong);
+    color: var(--ink-muted);
+    box-shadow: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal,
+    .reveal-fade {
+      animation-name: sd-reveal;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+    .reveal-fade {
+      animation-name: sd-reveal-fade;
+    }
+    .timeline::after {
+      animation-name: sd-fill-y;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --sd-timeline;
+      animation-range: cover 20% cover 70%;
+      animation-range: cover 40vh cover calc(100% - 60vh);
+    }
+    .timeline-dot {
+      animation-name: sd-dot;
+      animation-duration: auto;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: view();
+      animation-range: cover 30vh cover 40vh;
+    }
+    @media (min-width: 1024px) {
+      .timeline--h::after {
+        animation-name: sd-fill-x;
+        animation-range: cover 25vh cover 65vh;
+      }
+    }
+  }
+}
+
+@media print {
+  .reveal,
+  .reveal-fade,
+  .timeline::after,
+  .timeline-dot {
+    animation: none !important;
   }
 }
 
@@ -190,5 +475,8 @@
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+  .card-interactive:hover {
+    transform: none;
   }
 }

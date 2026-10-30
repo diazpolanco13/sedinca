@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRightIcon } from "@/components/icons";
 import { cn } from "@/lib/cn";
 
 export function Eyebrow({
@@ -32,7 +33,10 @@ export function SectionTitle({
   );
 }
 
-/** Enlace de texto con flecha («Ver servicio →»). */
+/**
+ * Enlace de texto con flecha («Ver servicio →»), sin precarga. Área táctil
+ * de 44px sin cambiar el aspecto (relleno vertical y margen negativo).
+ */
 export function ArrowLink({
   href,
   children,
@@ -45,12 +49,17 @@ export function ArrowLink({
   return (
     <Link
       href={href}
+      prefetch={false}
       className={cn(
-        "font-display font-semibold text-ink-brand no-underline transition-colors hover:text-brand-deep",
+        "group -my-3 inline-flex items-center gap-1.5 py-3 font-display font-semibold text-ink-brand no-underline transition-colors hover:underline",
         className,
       )}
     >
-      {children} →
+      {children}
+      <ArrowRightIcon
+        size={16}
+        className="flex-none transition-transform group-hover:translate-x-0.5 motion-reduce:transition-none"
+      />
     </Link>
   );
 }

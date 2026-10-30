@@ -266,4 +266,14 @@
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-sans: Inter, system-ui, sans-serif;
   --font-doc: Arial, Helvetica, sans-serif;
+
+  /*
+   * EXCEPCIÓN DE MARCA (documentada en BRAND.md): verdes oficiales de
+   * WhatsApp. Solo para el glifo de WhatsApp, nunca para texto, fondos ni
+   * otros elementos. --whatsapp es el verde del logotipo (sobre botones de
+   * marca y fondos oscuros); --whatsapp-deep es el verde oscuro oficial, para
+   * el glifo sobre superficies claras (≥3:1 sobre blanco).
+   */
+  --whatsapp: #25D366;
+  --whatsapp-deep: #128C7E;
 }
