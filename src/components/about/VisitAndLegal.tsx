@@ -14,8 +14,9 @@ import { aboutUbicacion, legal, visit, visitWhatsapp } from "./aboutContent";
  * 6-7 · «Visítenos» con el plano de la esquina (el mismo `OfficeMap` de
  * /contacto: Calle 82 con Avenida 14, «Cómo llegar» y el mapa de Google a
  * demanda) y el hueco de la foto real de la oficina (solo en revisión), y la
- * ficha legal (RIF publicado; Registro Mercantil y autorización de la
- * DIGESERVISP como pendientes), con enlace al kit de proveedor de /empresas.
+ * ficha legal (RIF y autorización vigente de la DIGESERVISP publicados;
+ * Registro Mercantil y número de la autorización como pendientes), con enlace
+ * al kit de proveedor de /empresas.
  */
 export function VisitAndLegal() {
   const rows = filterPending(legal.rows, (r) => r.value);

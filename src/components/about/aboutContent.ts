@@ -304,10 +304,9 @@ export const legal = {
     { term: "Objeto", value: "Vigilancia y protección no armada de personas y bienes", source: "Art. 4" },
     { term: "Modalidades", value: "Vigilancia fija · Vigilancia móvil · Consultoría y asesoría", source: "Arts. 9 y 28" },
     { term: "Registro Mercantil", value: "[DATOS DEL REGISTRO MERCANTIL]" },
-    {
-      term: "Autorización de funcionamiento (DIGESERVISP)",
-      value: "[NÚMERO Y VIGENCIA DE LA AUTORIZACIÓN]",
-    },
+    // Vigente: confirmado por la Dirección (2026-10-30). Falta el número.
+    { term: "Autorización de funcionamiento (DIGESERVISP)", value: "Vigente" },
+    { term: "N.º de la autorización DIGESERVISP", value: "[NÚMERO Y FECHA DE VENCIMIENTO]" },
   ] satisfies readonly LegalRow[],
   more: "¿Necesita registrar a SEDIN como proveedor?",
   moreLink: { label: "Ver el kit de proveedor", href: routes.empresas },

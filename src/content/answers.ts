@@ -315,7 +315,7 @@ export interface ProviderDocument {
 export const providerDocuments: readonly ProviderDocument[] = [
   { name: `RIF ${site.rifDisplay}`, note: "Vigente" },
   { name: "Registro Mercantil", note: "[VIGENTE AL FECHA]" },
-  { name: "Autorización de funcionamiento ante la DIGESERVISP", note: "[NÚMERO Y VIGENCIA]" },
+  { name: "Autorización de funcionamiento ante la DIGESERVISP", note: "Vigente" },
   { name: "Solvencia laboral", note: "[VIGENTE AL FECHA]" },
   { name: "Solvencias del IVSS, INCES y BANAVIH/FAOV", note: "[VIGENTES AL FECHA]" },
   { name: "Registro Nacional de Contratistas (RNC)", note: "[VIGENTE AL FECHA]" },
