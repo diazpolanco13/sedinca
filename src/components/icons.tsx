@@ -188,6 +188,18 @@ export const CloseIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const PauseIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M9 5v14M15 5v14" />
+  </Icon>
+);
+
+export const PlayIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <path d="M8 5l11 7-11 7V5z" />
+  </Icon>
+);
+
 export const PhoneIcon = (p: IconProps) => (
   <Icon {...p}>
     <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" />

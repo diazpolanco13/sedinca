@@ -1,6 +1,7 @@
 import { ActionLink } from "@/components/ui/ActionLink";
 import { FactStrip } from "@/components/ui/FactStrip";
-import { HeroBackdrop } from "@/components/ui/HeroBackdrop";
+import { HeroBackdrop, togglePlace } from "@/components/ui/HeroBackdrop";
+import { HeroVideoToggle } from "@/components/ui/HeroVideo";
 import { Container } from "@/components/ui/Section";
 import { CallLink } from "@/components/ui/WhatsAppLink";
 import { audienceActions, ctaLabels } from "@/config/site";
@@ -36,7 +37,7 @@ export function Hero() {
       aria-labelledby="portada-titulo"
       className="relative isolate flex flex-col overflow-hidden bg-azure-950 text-white sm:min-h-[680px] lg:min-h-[min(100svh,980px)]"
     >
-      <HeroBackdrop />
+      <HeroBackdrop toggle={false} />
 
       {/* Luz de cine: base oscura para la franja y destello cian a la izquierda. */}
       <div
@@ -119,6 +120,8 @@ export function Hero() {
             </div>
           </div>
         </div>
+        {/* Pausa de la animación: desde 640px, encima de la franja de hechos, dentro del margen inferior. */}
+        <HeroVideoToggle className={cn(togglePlace, "sm:right-8 sm:bottom-2 lg:bottom-4")} />
       </Container>
 
       {/* Franja de hechos (sustituye a «Pilares» y a los 5 chips de servicios). */}
