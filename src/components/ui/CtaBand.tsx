@@ -4,9 +4,9 @@ import { CONTACT_ZONE_CLASS } from "@/components/layout/contactZone";
 import { ActionGroup } from "@/components/ui/ActionLink";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { Section, SectionHeader } from "@/components/ui/Section";
+import { CallLink } from "@/components/ui/WhatsAppLink";
 import {
   audienceActions,
-  phoneHref,
   site,
   waMessages,
   type Audience,
@@ -19,7 +19,7 @@ import { umami } from "@/lib/analytics";
 /**
  * Cierre persuasivo de página (sección oscura): titular, entradilla, botones
  * según la audiencia y, a la derecha (solo desde 1024px), la tarjeta de
- * contacto 24/7: teléfono con «Respuesta inmediata, en tiempo real», oficina
+ * contacto 24/7: botón «Llamar» con «Respuesta inmediata, en tiempo real», oficina
  * y «Cómo llegar». WhatsApp no se repite en la tarjeta: ya es el botón
  * principal. En móvil la tarjeta no se pinta: el pie, justo debajo, y la
  * barra de contacto ya llevan teléfono, WhatsApp y dirección.
@@ -78,7 +78,6 @@ export function CtaBand({
   const computed = actions ?? audienceActions(audience, { ubicacion, whatsapp: message, sector, servicio });
   const all: CtaAction[] = cta ? [...computed, { kind: "link", label: cta.label, href: cta.href }] : [...computed];
   const titleId = `${id}-titulo`;
-  const tel = phoneHref();
 
   return (
     <Section tone="dark" id={id} labelledBy={titleId} label={label} className={CONTACT_ZONE_CLASS}>
@@ -98,15 +97,7 @@ export function CtaBand({
                 <span className="eyebrow">Atención {site.hours}</span>
               </div>
               <div className="flex flex-col gap-3">
-                {tel && (
-                  <a
-                    href={tel}
-                    {...umami("telefono", { ubicacion })}
-                    className="font-display text-[clamp(26px,2.6vw,34px)] leading-tight font-bold tracking-[-0.01em] text-ink no-underline hover:text-ink hover:underline"
-                  >
-                    {site.phone}
-                  </a>
-                )}
+                <CallLink ubicacion={ubicacion} variant="onPhoto" size="md" className="self-start" />
                 <p className="m-0 text-[15px] leading-6 text-ink-muted">
                   {site.responseTime}, por WhatsApp y por teléfono.
                 </p>

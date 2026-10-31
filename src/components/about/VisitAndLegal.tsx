@@ -58,7 +58,7 @@ export function VisitAndLegal() {
             <WhatsAppLink message={visitWhatsapp} ubicacion={aboutUbicacion} variant="primary" size="md" block>
               {visit.whatsappLabel}
             </WhatsAppLink>
-            <CallLink ubicacion={aboutUbicacion} variant="inline" />
+            <CallLink ubicacion={aboutUbicacion} variant="secondary" size="md" block />
           </div>
         </div>
 

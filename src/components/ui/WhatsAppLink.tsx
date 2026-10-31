@@ -92,31 +92,45 @@ export function WhatsAppLink({
   );
 }
 
-/** Llamar por teléfono (`tel:`), con evento `telefono`. */
+/**
+ * Llamar por teléfono (`tel:`), con evento `telefono`. El número no se
+ * escribe en el botón (decisión del cliente): lo lleva el `title` (se ve al
+ * pasar el ratón) y el lector de pantalla lo lee junto a «Llamar». El número
+ * a la vista queda para el pie, /contacto y los documentos imprimibles.
+ */
 export function CallLink({
   phone = site.phone,
   children,
   variant = "secondary",
   size = "md",
   ubicacion,
+  event = "telefono",
   block = false,
   className,
 }: {
   phone?: string;
-  /** Por defecto, «Llamar: +58 414 164 2505». */
+  /** Por defecto, «Llamar». */
   children?: ReactNode;
   variant?: ContactVariant;
   size?: ButtonSize;
   ubicacion: string;
+  /** Evento de Umami. Por defecto `telefono` (o `cotizador-llamada`). */
+  event?: string;
   block?: boolean;
   className?: string;
 }) {
   const href = phoneHref(phone);
   if (!href) return null;
   return (
-    <a href={href} {...umami("telefono", { ubicacion })} className={classFor(variant, size, block, className)}>
+    <a
+      href={href}
+      title={`Llamar al ${phone}`}
+      {...umami(event, { ubicacion })}
+      className={classFor(variant, size, block, className)}
+    >
       <PhoneIcon size={variant === "inline" ? 18 : glyphSize[size]} />
-      <span>{children ?? `Llamar: ${phone}`}</span>
+      <span>{children ?? ctaLabels.llamar}</span>
+      {children === undefined && <span className="sr-only"> al {phone}</span>}
     </a>
   );
 }

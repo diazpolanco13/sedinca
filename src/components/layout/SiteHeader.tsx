@@ -22,7 +22,7 @@ import {
   WhatsAppIcon,
 } from "@/components/icons";
 import { buttonClass } from "@/components/ui/links";
-import { WhatsAppLink } from "@/components/ui/WhatsAppLink";
+import { CallLink, WhatsAppLink } from "@/components/ui/WhatsAppLink";
 import {
   ctaLabels,
   headerCta,
@@ -125,11 +125,13 @@ export function SiteHeader() {
             {tel && (
               <a
                 href={tel}
+                title={`Llamar al ${site.phone}`}
                 {...umami("telefono", { ubicacion: MENU_UBICACION })}
-                className="inline-flex items-center gap-2 text-white/88 no-underline transition-colors hover:text-white"
+                className="inline-flex min-h-7 items-center gap-2 rounded-(--radius) border border-white/30 px-3 font-semibold text-white/88 no-underline transition-colors hover:border-white/70 hover:bg-white/10 hover:text-white"
               >
                 <PhoneIcon size={15} className="text-cyan-300" />
-                {site.phone}
+                {ctaLabels.llamar}
+                <span className="sr-only"> al {site.phone}</span>
               </a>
             )}
           </p>
@@ -714,14 +716,7 @@ function MobileMenu({ pathname, hydrated }: { pathname: string; hydrated: boolea
             {tel && (
               <>
                 <span aria-hidden="true">·</span>
-                <a
-                  href={tel}
-                  {...umami("telefono", { ubicacion: MENU_UBICACION })}
-                  className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-ink no-underline"
-                >
-                  <PhoneIcon size={16} className="text-ink-accent" />
-                  {site.phone}
-                </a>
+                <CallLink ubicacion={MENU_UBICACION} variant="secondary" size="sm" />
               </>
             )}
             <span className="basis-full text-xs text-ink-subtle">{site.responseTime}</span>

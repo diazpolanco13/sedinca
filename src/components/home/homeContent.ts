@@ -24,7 +24,6 @@ export const heroCopy = {
     "Oficiales de seguridad supervisados en sitio, control de acceso y cámaras con visión nocturna para la industria, las empresas y los condominios del Zulia.",
     "Cada novedad queda registrada en el libro del puesto.",
   ],
-  callPrefix: "o llame al",
 } as const;
 
 /**

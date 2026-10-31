@@ -356,11 +356,9 @@ export function ApplySection() {
               </MailLink>
             </Card>
 
-            <div className="flex flex-col gap-1 px-1 text-[15px] leading-6">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 px-1 text-[15px] leading-6">
               <span className="field-label">{applyCopy.questions}</span>
-              <CallLink ubicacion={jobsUbicacion} variant="inline">
-                {site.phone}
-              </CallLink>
+              <CallLink ubicacion={jobsUbicacion} variant="secondary" size="sm" />
             </div>
           </div>
         </div>

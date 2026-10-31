@@ -109,7 +109,8 @@ export function ActionLink({
 
 /**
  * Grupo de acciones en orden de importancia: la primera como botón
- * principal, la segunda como secundario y el resto como enlaces de texto.
+ * principal, la segunda como secundario y el resto como enlaces de texto
+ * («Llamar», como botón pequeño con icono).
  * `tone` adapta el secundario: `light` (borde), `dark` y `photo` (contorno
  * blanco). Si un botón trae `note` (p. ej. el diagnóstico: «4 preguntas ·
  * sin compromiso»), se pinta debajo, centrada.
@@ -150,15 +151,17 @@ export function ActionGroup({
           withNote(secondary, <ActionLink action={secondary} variant={secondaryVariant} size={size} block={block} />)}
       </div>
       {rest.length > 0 && (
-        <div
-          className={cn(
-            "flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px]",
-            tone !== "light" && "[&_a]:text-cyan-200",
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-[15px]">
+          {rest.map((action) =>
+            // Llamar: botón pequeño con icono, sin el número escrito.
+            action.kind === "call" ? (
+              <ActionLink key={action.label} action={action} variant={secondaryVariant} size="sm" />
+            ) : (
+              <span key={action.label} className={cn(tone !== "light" && "[&_a]:text-cyan-200")}>
+                <ActionLink action={action} variant="inline" />
+              </span>
+            ),
           )}
-        >
-          {rest.map((action) => (
-            <ActionLink key={action.label} action={action} variant="inline" />
-          ))}
         </div>
       )}
     </div>

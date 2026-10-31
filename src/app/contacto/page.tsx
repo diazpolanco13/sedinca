@@ -45,9 +45,7 @@ export default function ContactPage() {
       >
         <div data-hero-actions="" className="flex flex-col gap-3 pt-1 sm:flex-row sm:flex-wrap sm:gap-4">
           <WhatsAppLink message={waMessages.general} ubicacion="contacto" size="lg" block />
-          <CallLink ubicacion="contacto" variant="onPhoto" size="lg" block>
-            Llamar: {site.phone}
-          </CallLink>
+          <CallLink ubicacion="contacto" variant="onPhoto" size="lg" block />
         </div>
         <p className="m-0 flex items-start gap-2.5 text-[15px] leading-[22px] text-white/88 sm:text-base">
           <ClockIcon size={20} className="mt-px flex-none text-cyan-300" />

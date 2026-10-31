@@ -2,9 +2,9 @@ import { ActionLink } from "@/components/ui/ActionLink";
 import { FactStrip } from "@/components/ui/FactStrip";
 import { HeroBackdrop } from "@/components/ui/HeroBackdrop";
 import { Container } from "@/components/ui/Section";
-import { audienceActions, ctaLabels, phoneHref, site } from "@/config/site";
+import { CallLink } from "@/components/ui/WhatsAppLink";
+import { audienceActions, ctaLabels } from "@/config/site";
 import { heroFacts } from "@/content/facts";
-import { umami } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 import { heroCopy, heroFactsMobile } from "./homeContent";
 
@@ -27,7 +27,6 @@ const UBICACION = "portada";
  */
 export function Hero() {
   const [whatsapp, diagnostico, empresa] = audienceActions("general", { ubicacion: UBICACION });
-  const tel = phoneHref();
   const [leadIntro, leadRecord] = heroCopy.lead;
   const [firstEyebrow, ...otherEyebrows] = heroCopy.eyebrow;
 
@@ -116,18 +115,7 @@ export function Hero() {
               <span className="[&_a]:text-cyan-200">
                 <ActionLink action={empresa} variant="inline" />
               </span>
-              {tel && (
-                <span className="text-white/75">
-                  {heroCopy.callPrefix}{" "}
-                  <a
-                    href={tel}
-                    {...umami("telefono", { ubicacion: UBICACION })}
-                    className="font-semibold whitespace-nowrap text-white underline decoration-white/40 underline-offset-[3px] hover:text-white hover:decoration-white"
-                  >
-                    {site.phone}
-                  </a>
-                </span>
-              )}
+              <CallLink ubicacion={UBICACION} variant="onPhoto" size="sm" />
             </div>
           </div>
         </div>

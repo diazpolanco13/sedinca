@@ -410,7 +410,7 @@ export function audienceActions(
   };
 
   if (audience === "residencial") {
-    return [whatsapp, diagnostico, { kind: "call", label: `${ctaLabels.llamar}: ${site.phone}`, ubicacion }];
+    return [whatsapp, diagnostico, { kind: "call", label: ctaLabels.llamar, ubicacion }];
   }
 
   return [

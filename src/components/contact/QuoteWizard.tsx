@@ -53,16 +53,15 @@ import { Button } from "@/components/ui/Button";
 import { CopyMessageButton } from "@/components/ui/CopyMessageButton";
 import { FieldError, Input } from "@/components/ui/form";
 import { textLink } from "@/components/ui/links";
+import { CallLink } from "@/components/ui/WhatsAppLink";
 import {
   composeMessage,
   mailtoHref,
-  phoneHref,
   serviceHref,
   serviceSlugs,
   site,
   whatsappHref,
 } from "@/config/site";
-import { umami } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
 /*
@@ -724,13 +723,12 @@ function Wizard({
                 </div>
               </div>
 
-              <p className="m-0 text-[15px] leading-[22px] text-ink-muted">
-                ¿Prefiere hablar ahora?{" "}
-                <a href={phoneHref()} {...umami("cotizador-llamada", { ubicacion })} className={textLink}>
-                  Llámenos al <span className="whitespace-nowrap">{site.phone}</span>
-                </a>
-                , atención {site.hours}.
-              </p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <p className="m-0 text-[15px] leading-[22px] text-ink-muted">
+                  ¿Prefiere hablar ahora? Atención {site.hours}.
+                </p>
+                <CallLink ubicacion={ubicacion} event="cotizador-llamada" variant="secondary" size="sm" />
+              </div>
             </form>
 
             {priceNote}
